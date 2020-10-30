@@ -20,11 +20,14 @@ namespace DesktopDokies
 
         public int floor;
 
+        bool Flipped = false; //False if fasing left
+
         float speed = 0.0f;
         float acc = 0.5f;
 
         public Doki()
         {
+            //this.image.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
 
             InitializeComponent();
             falling = true;
@@ -34,11 +37,12 @@ namespace DesktopDokies
             Fall.Tick += new EventHandler(Fall_Elapsed);
             Fall.Interval = 15;
             
-            this.image.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
             this.image.Image = happy;
             Screen myScreen = Screen.FromControl(this);
             Rectangle area = myScreen.WorkingArea;
             floor = area.Height - this.image.Height + area.Y;
+
+            Flip();
 
             Fall.Start();
 
@@ -47,7 +51,7 @@ namespace DesktopDokies
         private bool mouseDown;
         private Point lastLocation;
 
-        private delegate void Fall_Elapsed_Delligate(object sender, EventArgs e);
+        //private delegate void Fall_Elapsed_Delligate(object sender, EventArgs e);
         private void Fall_Elapsed(object sender, EventArgs e)
         {
             if(this.Location.Y < floor)
@@ -66,7 +70,7 @@ namespace DesktopDokies
             }
             if (!falling)
             {
-                this.image.Image = standing;
+                changeImage(standing);
                 Fall.Enabled = false;
             }
         }
@@ -76,7 +80,7 @@ namespace DesktopDokies
             speed = 0;
             falling = false;
             Fall.Stop();
-            this.image.Image = happy;
+            changeImage(happy);
             mouseDown = true;
             lastLocation = e.Location;
         }
@@ -100,8 +104,23 @@ namespace DesktopDokies
             falling = true;
             //Console.WriteLine($"Floor: {floor}, Height: {area.Height}, Corner: {area.X}, {area.Y}");
             Fall.Start();
-            this.image.Image = happy;
+            changeImage(happy);
             mouseDown = false;
+        }
+
+
+        private void Flip()
+        {
+            //this.image.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
+            //Tricky: The image in the control are refrenced from the 
+            happy.RotateFlip(RotateFlipType.RotateNoneFlipX);
+            standing.RotateFlip(RotateFlipType.RotateNoneFlipX);
+            Flipped = !Flipped;
+        }
+
+        private void changeImage(Bitmap newImg)
+        {
+            this.image.Image = newImg;
         }
     }
 }
