@@ -1,1 +1,6 @@
-obj
+*/obj/*
+*/bin/*
+*.cache
+/DesktopDokies/obj/Debug/DesignTimeResolveAssemblyReferences.cache
+/DesktopDokies/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/DesktopDokies/obj/Debug/DesktopDokies.csprojAssemblyReference.cache
