@@ -92,6 +92,8 @@ namespace DesktopDokies
             speed = 0;
             falling = false;
             Fall.Stop();
+            Jump.Stop();
+            resetJump();
             changeImage(happy);
             mouseDown = true;
             lastLocation = e.Location;
@@ -135,6 +137,12 @@ namespace DesktopDokies
             this.image.Image = newImg;
         }
 
+        private void resetJump()
+        {
+            jumpSpeed = jumpSpeedMax;
+            jumps = 0;
+        }
+
         private void Jump_Elapsed(object sender, EventArgs e)
         {
             this.Location = new Point(this.Location.X, this.Location.Y + (int)Math.Floor(jumpSpeed));
@@ -142,9 +150,7 @@ namespace DesktopDokies
             if (this.Location.Y >= floor && jumpSpeed > 0 && jumps == maxJumps - 1)
             {
                 this.Location = new Point(this.Location.X, floor);
-                jumpSpeed = jumpSpeedMax;
-                jumps = 0;
-                Console.WriteLine("No Jump");
+                resetJump();
                 this.Update();
                 changeImage(standing);
                 Jump.Enabled = false;
@@ -155,7 +161,6 @@ namespace DesktopDokies
                 jumpSpeed = jumpSpeedMax + (jumps + 1) * jumpReduction;
                 jumps++;
                 this.Update();
-                Console.WriteLine("Jump");
             }
         }
     }
