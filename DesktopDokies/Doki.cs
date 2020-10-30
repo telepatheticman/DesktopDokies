@@ -18,6 +18,14 @@ namespace DesktopDokies
         public bool falling = true;
         private Timer Fall = new Timer();
 
+        float jumpReduction = 5.0f;
+
+        float jumpSpeedMax = -20.0f;
+        float jumpSpeed = -20.0f;
+        int maxJumps = 4;
+        int jumps = 0;
+        private Timer Jump = new Timer();
+
         public int floor;
 
         bool Flipped = false; //False if fasing left
@@ -36,6 +44,9 @@ namespace DesktopDokies
             this.image.MouseUp += image_MouseUp;
             Fall.Tick += new EventHandler(Fall_Elapsed);
             Fall.Interval = 15;
+
+            Jump.Tick += new EventHandler(Jump_Elapsed);
+            Jump.Interval = 10;
             
             this.image.Image = happy;
             Screen myScreen = Screen.FromControl(this);
@@ -70,8 +81,9 @@ namespace DesktopDokies
             }
             if (!falling)
             {
-                changeImage(standing);
+                //changeImage(standing);
                 Fall.Enabled = false;
+                Jump.Enabled = true;
             }
         }
 
@@ -102,7 +114,7 @@ namespace DesktopDokies
             Rectangle area = myScreen.WorkingArea;
             floor = area.Height - this.image.Height + area.Y;
             falling = true;
-            //Console.WriteLine($"Floor: {floor}, Height: {area.Height}, Corner: {area.X}, {area.Y}");
+            Console.WriteLine($"Floor: {floor}, Height: {area.Height}, Corner: {area.X}, {area.Y}");
             Fall.Start();
             changeImage(happy);
             mouseDown = false;
@@ -121,6 +133,30 @@ namespace DesktopDokies
         private void changeImage(Bitmap newImg)
         {
             this.image.Image = newImg;
+        }
+
+        private void Jump_Elapsed(object sender, EventArgs e)
+        {
+            this.Location = new Point(this.Location.X, this.Location.Y + (int)Math.Floor(jumpSpeed));
+            jumpSpeed += acc * 2;
+            if (this.Location.Y >= floor && jumpSpeed > 0 && jumps == maxJumps - 1)
+            {
+                this.Location = new Point(this.Location.X, floor);
+                jumpSpeed = jumpSpeedMax;
+                jumps = 0;
+                Console.WriteLine("No Jump");
+                this.Update();
+                changeImage(standing);
+                Jump.Enabled = false;
+            }
+            if (this.Location.Y >= floor && jumpSpeed > 0 && jumps < maxJumps)
+            {
+                this.Location = new Point(this.Location.X, floor);
+                jumpSpeed = jumpSpeedMax + (jumps + 1) * jumpReduction;
+                jumps++;
+                this.Update();
+                Console.WriteLine("Jump");
+            }
         }
     }
 }
