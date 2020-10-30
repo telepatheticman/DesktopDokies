@@ -15,27 +15,67 @@ namespace DesktopDokies
         Bitmap happy = Properties.Resources.M_Happy;
         Bitmap standing = Properties.Resources.M_Standing;
 
-        int floor;
+        public bool falling = true;
+        private Timer Fall = new Timer();
+
+        public int floor;
+
+        float speed = 0.0f;
+        float acc = 0.5f;
+
         public Doki()
         {
 
             InitializeComponent();
+            falling = true;
             this.image.MouseDown += image_MouseDown;
             this.image.MouseMove += image_MouseMove;
             this.image.MouseUp += image_MouseUp;
+            Fall.Tick += new EventHandler(Fall_Elapsed);
+            Fall.Interval = 15;
+            
             this.image.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
-            this.image.Image = Properties.Resources.M_Happy;
-            this.image.Image = standing;
+            this.image.Image = happy;
             Screen myScreen = Screen.FromControl(this);
             Rectangle area = myScreen.WorkingArea;
-            floor = area.Height - this.image.Height;
+            floor = area.Height - this.image.Height + area.Y;
+
+            Fall.Start();
+
         }
 
         private bool mouseDown;
         private Point lastLocation;
 
+        private delegate void Fall_Elapsed_Delligate(object sender, EventArgs e);
+        private void Fall_Elapsed(object sender, EventArgs e)
+        {
+            if(this.Location.Y < floor)
+            {
+                    this.Location = new Point(this.Location.X, this.Location.Y + (int)Math.Floor(speed));
+                speed += acc;
+                    this.Update();
+
+            }
+            if(this.Location.Y >= floor)
+            {
+                this.Location = new Point(this.Location.X, floor);
+                this.Update();
+                falling = false;
+                speed = 0;
+            }
+            if (!falling)
+            {
+                this.image.Image = standing;
+                Fall.Enabled = false;
+            }
+        }
+
         private void image_MouseDown(object sender, MouseEventArgs e)
         {
+            speed = 0;
+            falling = false;
+            Fall.Stop();
             this.image.Image = happy;
             mouseDown = true;
             lastLocation = e.Location;
@@ -56,10 +96,11 @@ namespace DesktopDokies
         {
             Screen myScreen = Screen.FromControl(this);
             Rectangle area = myScreen.WorkingArea;
-            floor = area.Height - this.image.Height;
+            floor = area.Height - this.image.Height + area.Y;
+            falling = true;
             //Console.WriteLine($"Floor: {floor}, Height: {area.Height}, Corner: {area.X}, {area.Y}");
-            this.Location = new Point(this.Location.X, area.Height - this.image.Height + area.Y);
-            this.image.Image = standing;
+            Fall.Start();
+            this.image.Image = happy;
             mouseDown = false;
         }
     }
