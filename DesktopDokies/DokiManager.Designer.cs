@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DokiManager));
             this.gCharacter = new System.Windows.Forms.GroupBox();
             this.gSize = new System.Windows.Forms.GroupBox();
             this.bSpawn = new System.Windows.Forms.Button();
@@ -182,6 +183,7 @@
             this.Controls.Add(this.bSpawn);
             this.Controls.Add(this.gSize);
             this.Controls.Add(this.gCharacter);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DokiManager";
             this.Text = "Doki Manager";
             this.gCharacter.ResumeLayout(false);

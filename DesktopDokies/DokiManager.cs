@@ -54,7 +54,7 @@ namespace DesktopDokies
 
             b.Click += (ss, ee) => 
             {
-                doki.Close();
+                doki.DokiClose();
                 doki.Dispose();
                 this.fpAlive.Controls.Remove(p);
                 p.Dispose();
