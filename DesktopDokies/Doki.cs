@@ -28,6 +28,9 @@ namespace DesktopDokies
 
         public int floor;
 
+        public int rWall;
+        public int lWall;
+
         bool Flipped = false; //False if fasing left
 
         float speed = 0.0f;
@@ -52,6 +55,8 @@ namespace DesktopDokies
             Screen myScreen = Screen.FromControl(this);
             Rectangle area = myScreen.WorkingArea;
             floor = area.Height - this.image.Height + area.Y;
+            rWall = area.Width - this.image.Width + area.X;
+            lWall = area.X;
 
             Flip();
 
@@ -61,6 +66,7 @@ namespace DesktopDokies
 
         private bool mouseDown;
         private Point lastLocation;
+        private int lastX;
 
         //private delegate void Fall_Elapsed_Delligate(object sender, EventArgs e);
         private void Fall_Elapsed(object sender, EventArgs e)
@@ -97,6 +103,7 @@ namespace DesktopDokies
             changeImage(happy);
             mouseDown = true;
             lastLocation = e.Location;
+            lastX = Cursor.Position.X;
         }
 
         private void image_MouseMove(object sender, MouseEventArgs e)
@@ -105,7 +112,12 @@ namespace DesktopDokies
             {
                 this.Location = new Point(
                     (this.Location.X - lastLocation.X) + e.X, (this.Location.Y - lastLocation.Y) + e.Y);
-
+                //Console.WriteLine(lastLocation.X);
+                if (lastX - Cursor.Position.X > 0 && Flipped) Flip();
+                if (lastX - Cursor.Position.X < 0 && !Flipped) Flip();
+                Console.WriteLine($"lastX: {lastX}, eX: {Cursor.Position.X}");
+                //Console.WriteLine(Cursor.Position.X);
+                lastX = Cursor.Position.X;
                 this.Update();
             }
         }
@@ -115,8 +127,12 @@ namespace DesktopDokies
             Screen myScreen = Screen.FromControl(this);
             Rectangle area = myScreen.WorkingArea;
             floor = area.Height - this.image.Height + area.Y;
+            rWall = area.Width - this.image.Width + area.X;
+            lWall = area.X;
+            if (this.Location.X > rWall) this.Location = new Point(rWall, this.Location.Y);
+            if (this.Location.X < lWall) this.Location = new Point(lWall, this.Location.Y);
             falling = true;
-            Console.WriteLine($"Floor: {floor}, Height: {area.Height}, Corner: {area.X}, {area.Y}");
+            //Console.WriteLine($"Floor: {floor}, Height: {area.Height}, Corner: {area.X}, {area.Y}");
             Fall.Start();
             changeImage(happy);
             mouseDown = false;

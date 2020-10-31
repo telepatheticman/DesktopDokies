@@ -54,6 +54,7 @@
             this.Name = "Doki";
             this.ShowInTaskbar = false;
             this.Text = "Doki";
+            this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.Lime;
             ((System.ComponentModel.ISupportInitialize)(this.image)).EndInit();
             this.ResumeLayout(false);
