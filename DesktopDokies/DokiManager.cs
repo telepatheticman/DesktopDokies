@@ -23,6 +23,7 @@ namespace DesktopDokies
         int size;
         public DokiManager()
         {
+            bool CloseButton = false;
             InitializeComponent();
 
             loadRes();
@@ -36,6 +37,28 @@ namespace DesktopDokies
             {
                 About about = new About();
                 about.ShowDialog();
+            };
+            this.FormClosing += (ss, ee) =>
+            {
+                
+                if (ee.CloseReason == CloseReason.UserClosing && !CloseButton)
+                {
+                    ee.Cancel = true;
+                    notifyIcon1.Visible = true;
+                    this.Hide();
+                    //notifyIcon1.ShowBalloonTip(500);
+                }
+            };
+
+            this.bClose.Click += (ss, ee) =>
+            {
+                CloseButton = true;
+                this.Close();
+            };
+            this.notifyIcon1.MouseDoubleClick += (ss, ee) =>
+            {
+                this.Show();
+                notifyIcon1.Visible = false;
             };
         }
 

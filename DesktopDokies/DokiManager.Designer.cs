@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DokiManager));
             this.gCharacter = new System.Windows.Forms.GroupBox();
             this.rNatsuki = new System.Windows.Forms.RadioButton();
@@ -42,6 +43,8 @@
             this.gAlive = new System.Windows.Forms.GroupBox();
             this.fpAlive = new System.Windows.Forms.FlowLayoutPanel();
             this.bAbout = new System.Windows.Forms.Button();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.bClose = new System.Windows.Forms.Button();
             this.gCharacter.SuspendLayout();
             this.gSize.SuspendLayout();
             this.gAlive.SuspendLayout();
@@ -184,11 +187,29 @@
             this.bAbout.Text = "About";
             this.bAbout.UseVisualStyleBackColor = true;
             // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.notifyIcon1.BalloonTipText = "We are still running in the background";
+            this.notifyIcon1.BalloonTipTitle = "Still Running";
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "Desktop Dokies";
+            // 
+            // bClose
+            // 
+            this.bClose.Location = new System.Drawing.Point(468, 410);
+            this.bClose.Name = "bClose";
+            this.bClose.Size = new System.Drawing.Size(126, 28);
+            this.bClose.TabIndex = 5;
+            this.bClose.Text = "End Desktop Dokies";
+            this.bClose.UseVisualStyleBackColor = true;
+            // 
             // DokiManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(707, 450);
+            this.Controls.Add(this.bClose);
             this.Controls.Add(this.bAbout);
             this.Controls.Add(this.gAlive);
             this.Controls.Add(this.bSpawn);
@@ -221,6 +242,8 @@
         private System.Windows.Forms.GroupBox gAlive;
         private System.Windows.Forms.FlowLayoutPanel fpAlive;
         private System.Windows.Forms.Button bAbout;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.Button bClose;
     }
 }
 

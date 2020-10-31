@@ -117,15 +117,6 @@
     <None Include="Resources\MonikaMediumStanding.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\MonikaLargeDead.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\MonikaLargeHappy.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\MonikaLargeStanding.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\MonikaSmallDead.png" />
   </ItemGroup>
   <ItemGroup>
@@ -160,15 +151,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\NatsukiStandingsmall.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SayoriDeadLarge.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SayoriHappyLarge.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SayoriStandingLarge.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\SayoriDeadMedium.png" />
@@ -217,6 +199,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\doki_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MonikaLargeDead.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MonikaLargeHappy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MonikaLargeStanding.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SayoriDeadLarge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SayoriHappyLarge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SayoriStandingLarge.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
