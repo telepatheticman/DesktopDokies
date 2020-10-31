@@ -16,6 +16,8 @@ namespace DesktopDokies
 
         Bitmap happy = Properties.Resources.M_Happy;
         Bitmap standing = Properties.Resources.M_Standing;
+        Bitmap happy_Flip = Properties.Resources.M_Happy;
+        Bitmap standing_Flip = Properties.Resources.M_Standing;
 
         public bool falling = true;
         private Timer Fall = new Timer();
@@ -30,8 +32,10 @@ namespace DesktopDokies
 
         private float walkHopMax = -10.0f;
         private float walkHop = -10.0f;
-        private int walkDist;
+        private int walkDist = 42;
         private Timer Walk = new Timer();
+
+        private Timer Move = new Timer();
 
         public int floor;
 
@@ -39,6 +43,7 @@ namespace DesktopDokies
         public int lWall;
 
         bool Flipped = false; //False if fasing left
+        bool fromFall = true;
 
         float speed = 0.0f;
         float acc = 0.5f;
@@ -50,6 +55,10 @@ namespace DesktopDokies
             //this.image.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
 
             InitializeComponent();
+
+            happy_Flip.RotateFlip(RotateFlipType.RotateNoneFlipX);
+            standing_Flip.RotateFlip(RotateFlipType.RotateNoneFlipX);
+
             falling = true;
             this.image.MouseDown += image_MouseDown;
             this.image.MouseMove += image_MouseMove;
@@ -62,6 +71,9 @@ namespace DesktopDokies
 
             Walk.Tick += new EventHandler(Walk_Elapsed);
             Walk.Interval = 10;
+
+            Move.Tick += new EventHandler(Move_Elapsed);
+            Move.Interval = 2000;
             
             this.image.Image = happy;
             Screen myScreen = Screen.FromControl(this);
@@ -70,9 +82,9 @@ namespace DesktopDokies
             rWall = area.Width - this.image.Width + area.X;
             lWall = area.X;
 
-            Flip();
+            //Flip();
 
-            dir = rand.Next(2);
+            //dir = rand.Next(2);
 
             Fall.Start();
 
@@ -104,6 +116,7 @@ namespace DesktopDokies
                 //changeImage(standing);
                 Fall.Enabled = false;
                 Jump.Enabled = true;
+                fromFall = true;
             }
         }
 
@@ -113,8 +126,11 @@ namespace DesktopDokies
             falling = false;
             Fall.Stop();
             Jump.Stop();
+            Walk.Stop();
+            walkHop = walkHopMax;
+            Move.Stop();
             resetJump();
-            changeImage(happy);
+            setHappy();
             mouseDown = true;
             lastLocation = e.Location;
             lastX = Cursor.Position.X;
@@ -148,18 +164,38 @@ namespace DesktopDokies
             falling = true;
             //Console.WriteLine($"Floor: {floor}, Height: {area.Height}, Corner: {area.X}, {area.Y}");
             Fall.Start();
-            changeImage(happy);
+            setHappy();
             mouseDown = false;
         }
 
 
         private void Flip()
         {
-            //this.image.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
-            //Tricky: The image in the control are refrenced from the 
-            happy.RotateFlip(RotateFlipType.RotateNoneFlipX);
-            standing.RotateFlip(RotateFlipType.RotateNoneFlipX);
             Flipped = !Flipped;
+        }
+
+        private void setStanding()
+        {
+            if (Flipped)
+            {
+                changeImage(standing_Flip);
+            }
+            else
+            {
+                changeImage(standing);
+            }
+        }
+
+        private void setHappy()
+        {
+            if(Flipped)
+            {
+                changeImage(happy_Flip);
+            }
+            else
+            {
+                changeImage(happy);
+            }
         }
 
         private void changeImage(Bitmap newImg)
@@ -182,9 +218,13 @@ namespace DesktopDokies
                 this.Location = new Point(this.Location.X, floor);
                 resetJump();
                 this.Update();
-                changeImage(standing);
+                setStanding();
                 Jump.Enabled = false;
-                Walk.Enabled = true;
+                if (fromFall)
+                {
+                    Move.Enabled = true;
+                    fromFall = false;
+                }
             }
             if (this.Location.Y >= floor && jumpSpeed > 0 && jumps < maxJumps)
             {
@@ -197,9 +237,6 @@ namespace DesktopDokies
         int track = 0;
         private void Walk_Elapsed(object sender, EventArgs e)
         {
-            
-            if (dir == 0) dir = -1;
-            if ((dir < 0 && Flipped) || (dir > 0 && !Flipped)) Flip();
             this.Location = new Point(this.Location.X + dir * 2, this.Location.Y + (int)Math.Floor(walkHop));
             walkHop += acc * 2;
             track++;
@@ -210,7 +247,23 @@ namespace DesktopDokies
                 this.Update();
                 Console.WriteLine(track);
                 Walk.Enabled = false;
+                Move.Enabled = true;
             }
+        }
+
+        private void Move_Elapsed(object sender, EventArgs e)
+        {
+            dir = rand.Next(2);
+            if (dir == 0) dir = -1;
+            if ((dir < 0 && Flipped) || (dir > 0 && !Flipped)) Flip();
+            setStanding();
+            //Flip();
+            //this.image.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
+            //this.image.Image = happy;
+            
+            this.Update();
+            Walk.Enabled = true;
+            Move.Enabled = false;
         }
     }
 }
