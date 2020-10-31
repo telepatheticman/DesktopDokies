@@ -12,6 +12,8 @@ namespace DesktopDokies
 {
     public partial class Doki : Form
     {
+        Random rand = new Random();
+
         Bitmap happy = Properties.Resources.M_Happy;
         Bitmap standing = Properties.Resources.M_Standing;
 
@@ -26,6 +28,11 @@ namespace DesktopDokies
         int jumps = 0;
         private Timer Jump = new Timer();
 
+        private float walkHopMax = -10.0f;
+        private float walkHop = -10.0f;
+        private int walkDist;
+        private Timer Walk = new Timer();
+
         public int floor;
 
         public int rWall;
@@ -35,6 +42,8 @@ namespace DesktopDokies
 
         float speed = 0.0f;
         float acc = 0.5f;
+
+        int dir = 0;
 
         public Doki()
         {
@@ -50,6 +59,9 @@ namespace DesktopDokies
 
             Jump.Tick += new EventHandler(Jump_Elapsed);
             Jump.Interval = 10;
+
+            Walk.Tick += new EventHandler(Walk_Elapsed);
+            Walk.Interval = 10;
             
             this.image.Image = happy;
             Screen myScreen = Screen.FromControl(this);
@@ -59,6 +71,8 @@ namespace DesktopDokies
             lWall = area.X;
 
             Flip();
+
+            dir = rand.Next(2);
 
             Fall.Start();
 
@@ -170,6 +184,7 @@ namespace DesktopDokies
                 this.Update();
                 changeImage(standing);
                 Jump.Enabled = false;
+                Walk.Enabled = true;
             }
             if (this.Location.Y >= floor && jumpSpeed > 0 && jumps < maxJumps)
             {
@@ -177,6 +192,24 @@ namespace DesktopDokies
                 jumpSpeed = jumpSpeedMax + (jumps + 1) * jumpReduction;
                 jumps++;
                 this.Update();
+            }
+        }
+        int track = 0;
+        private void Walk_Elapsed(object sender, EventArgs e)
+        {
+            
+            if (dir == 0) dir = -1;
+            if ((dir < 0 && Flipped) || (dir > 0 && !Flipped)) Flip();
+            this.Location = new Point(this.Location.X + dir * 2, this.Location.Y + (int)Math.Floor(walkHop));
+            walkHop += acc * 2;
+            track++;
+            if (this.Location.Y >= floor && walkHop > 0)
+            {
+                this.Location = new Point(this.Location.X, floor);
+                walkHop = walkHopMax;
+                this.Update();
+                Console.WriteLine(track);
+                Walk.Enabled = false;
             }
         }
     }
