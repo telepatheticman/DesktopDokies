@@ -115,7 +115,7 @@ namespace DesktopDokies
                 //Console.WriteLine(lastLocation.X);
                 if (lastX - Cursor.Position.X > 0 && Flipped) Flip();
                 if (lastX - Cursor.Position.X < 0 && !Flipped) Flip();
-                Console.WriteLine($"lastX: {lastX}, eX: {Cursor.Position.X}");
+                //Console.WriteLine($"lastX: {lastX}, eX: {Cursor.Position.X}");
                 //Console.WriteLine(Cursor.Position.X);
                 lastX = Cursor.Position.X;
                 this.Update();
