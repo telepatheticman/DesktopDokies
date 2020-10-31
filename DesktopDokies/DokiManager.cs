@@ -32,6 +32,11 @@ namespace DesktopDokies
             //Thread.Sleep(5000);
             //testList[0].Close();
             this.bSpawn.Click += spawn_Click;
+            this.bAbout.Click += (ss, ee) =>
+            {
+                About about = new About();
+                about.ShowDialog();
+            };
         }
 
 

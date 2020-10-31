@@ -30,17 +30,18 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DokiManager));
             this.gCharacter = new System.Windows.Forms.GroupBox();
-            this.gSize = new System.Windows.Forms.GroupBox();
-            this.bSpawn = new System.Windows.Forms.Button();
-            this.rSayori = new System.Windows.Forms.RadioButton();
-            this.rMonika = new System.Windows.Forms.RadioButton();
-            this.rYuri = new System.Windows.Forms.RadioButton();
             this.rNatsuki = new System.Windows.Forms.RadioButton();
-            this.rSmall = new System.Windows.Forms.RadioButton();
-            this.rMedium = new System.Windows.Forms.RadioButton();
+            this.rYuri = new System.Windows.Forms.RadioButton();
+            this.rMonika = new System.Windows.Forms.RadioButton();
+            this.rSayori = new System.Windows.Forms.RadioButton();
+            this.gSize = new System.Windows.Forms.GroupBox();
             this.rLarge = new System.Windows.Forms.RadioButton();
+            this.rMedium = new System.Windows.Forms.RadioButton();
+            this.rSmall = new System.Windows.Forms.RadioButton();
+            this.bSpawn = new System.Windows.Forms.Button();
             this.gAlive = new System.Windows.Forms.GroupBox();
             this.fpAlive = new System.Windows.Forms.FlowLayoutPanel();
+            this.bAbout = new System.Windows.Forms.Button();
             this.gCharacter.SuspendLayout();
             this.gSize.SuspendLayout();
             this.gAlive.SuspendLayout();
@@ -59,26 +60,35 @@
             this.gCharacter.TabStop = false;
             this.gCharacter.Text = "Character";
             // 
-            // gSize
+            // rNatsuki
             // 
-            this.gSize.Controls.Add(this.rLarge);
-            this.gSize.Controls.Add(this.rMedium);
-            this.gSize.Controls.Add(this.rSmall);
-            this.gSize.Location = new System.Drawing.Point(235, 12);
-            this.gSize.Name = "gSize";
-            this.gSize.Size = new System.Drawing.Size(228, 102);
-            this.gSize.TabIndex = 1;
-            this.gSize.TabStop = false;
-            this.gSize.Text = "Size";
+            this.rNatsuki.AutoSize = true;
+            this.rNatsuki.Location = new System.Drawing.Point(135, 70);
+            this.rNatsuki.Name = "rNatsuki";
+            this.rNatsuki.Size = new System.Drawing.Size(61, 17);
+            this.rNatsuki.TabIndex = 3;
+            this.rNatsuki.Text = "Natsuki";
+            this.rNatsuki.UseVisualStyleBackColor = true;
             // 
-            // bSpawn
+            // rYuri
             // 
-            this.bSpawn.Location = new System.Drawing.Point(551, 23);
-            this.bSpawn.Name = "bSpawn";
-            this.bSpawn.Size = new System.Drawing.Size(80, 80);
-            this.bSpawn.TabIndex = 2;
-            this.bSpawn.Text = "Spawn";
-            this.bSpawn.UseVisualStyleBackColor = true;
+            this.rYuri.AutoSize = true;
+            this.rYuri.Location = new System.Drawing.Point(20, 70);
+            this.rYuri.Name = "rYuri";
+            this.rYuri.Size = new System.Drawing.Size(43, 17);
+            this.rYuri.TabIndex = 2;
+            this.rYuri.Text = "Yuri";
+            this.rYuri.UseVisualStyleBackColor = true;
+            // 
+            // rMonika
+            // 
+            this.rMonika.AutoSize = true;
+            this.rMonika.Location = new System.Drawing.Point(135, 20);
+            this.rMonika.Name = "rMonika";
+            this.rMonika.Size = new System.Drawing.Size(60, 17);
+            this.rMonika.TabIndex = 1;
+            this.rMonika.Text = "Monika";
+            this.rMonika.UseVisualStyleBackColor = true;
             // 
             // rSayori
             // 
@@ -92,45 +102,27 @@
             this.rSayori.Text = "Sayori";
             this.rSayori.UseVisualStyleBackColor = true;
             // 
-            // rMonika
+            // gSize
             // 
-            this.rMonika.AutoSize = true;
-            this.rMonika.Location = new System.Drawing.Point(135, 20);
-            this.rMonika.Name = "rMonika";
-            this.rMonika.Size = new System.Drawing.Size(60, 17);
-            this.rMonika.TabIndex = 1;
-            this.rMonika.Text = "Monika";
-            this.rMonika.UseVisualStyleBackColor = true;
+            this.gSize.Controls.Add(this.rLarge);
+            this.gSize.Controls.Add(this.rMedium);
+            this.gSize.Controls.Add(this.rSmall);
+            this.gSize.Location = new System.Drawing.Point(235, 12);
+            this.gSize.Name = "gSize";
+            this.gSize.Size = new System.Drawing.Size(228, 102);
+            this.gSize.TabIndex = 1;
+            this.gSize.TabStop = false;
+            this.gSize.Text = "Size";
             // 
-            // rYuri
+            // rLarge
             // 
-            this.rYuri.AutoSize = true;
-            this.rYuri.Location = new System.Drawing.Point(20, 70);
-            this.rYuri.Name = "rYuri";
-            this.rYuri.Size = new System.Drawing.Size(43, 17);
-            this.rYuri.TabIndex = 2;
-            this.rYuri.Text = "Yuri";
-            this.rYuri.UseVisualStyleBackColor = true;
-            // 
-            // rNatsuki
-            // 
-            this.rNatsuki.AutoSize = true;
-            this.rNatsuki.Location = new System.Drawing.Point(135, 70);
-            this.rNatsuki.Name = "rNatsuki";
-            this.rNatsuki.Size = new System.Drawing.Size(61, 17);
-            this.rNatsuki.TabIndex = 3;
-            this.rNatsuki.Text = "Natsuki";
-            this.rNatsuki.UseVisualStyleBackColor = true;
-            // 
-            // rSmall
-            // 
-            this.rSmall.AutoSize = true;
-            this.rSmall.Location = new System.Drawing.Point(7, 43);
-            this.rSmall.Name = "rSmall";
-            this.rSmall.Size = new System.Drawing.Size(50, 17);
-            this.rSmall.TabIndex = 0;
-            this.rSmall.Text = "Small";
-            this.rSmall.UseVisualStyleBackColor = true;
+            this.rLarge.AutoSize = true;
+            this.rLarge.Location = new System.Drawing.Point(164, 43);
+            this.rLarge.Name = "rLarge";
+            this.rLarge.Size = new System.Drawing.Size(52, 17);
+            this.rLarge.TabIndex = 2;
+            this.rLarge.Text = "Large";
+            this.rLarge.UseVisualStyleBackColor = true;
             // 
             // rMedium
             // 
@@ -144,15 +136,24 @@
             this.rMedium.Text = "Medium";
             this.rMedium.UseVisualStyleBackColor = true;
             // 
-            // rLarge
+            // rSmall
             // 
-            this.rLarge.AutoSize = true;
-            this.rLarge.Location = new System.Drawing.Point(164, 43);
-            this.rLarge.Name = "rLarge";
-            this.rLarge.Size = new System.Drawing.Size(52, 17);
-            this.rLarge.TabIndex = 2;
-            this.rLarge.Text = "Large";
-            this.rLarge.UseVisualStyleBackColor = true;
+            this.rSmall.AutoSize = true;
+            this.rSmall.Location = new System.Drawing.Point(7, 43);
+            this.rSmall.Name = "rSmall";
+            this.rSmall.Size = new System.Drawing.Size(50, 17);
+            this.rSmall.TabIndex = 0;
+            this.rSmall.Text = "Small";
+            this.rSmall.UseVisualStyleBackColor = true;
+            // 
+            // bSpawn
+            // 
+            this.bSpawn.Location = new System.Drawing.Point(551, 23);
+            this.bSpawn.Name = "bSpawn";
+            this.bSpawn.Size = new System.Drawing.Size(80, 80);
+            this.bSpawn.TabIndex = 2;
+            this.bSpawn.Text = "Spawn";
+            this.bSpawn.UseVisualStyleBackColor = true;
             // 
             // gAlive
             // 
@@ -174,11 +175,21 @@
             this.fpAlive.TabIndex = 0;
             this.fpAlive.WrapContents = false;
             // 
+            // bAbout
+            // 
+            this.bAbout.Location = new System.Drawing.Point(600, 410);
+            this.bAbout.Name = "bAbout";
+            this.bAbout.Size = new System.Drawing.Size(95, 28);
+            this.bAbout.TabIndex = 4;
+            this.bAbout.Text = "About";
+            this.bAbout.UseVisualStyleBackColor = true;
+            // 
             // DokiManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(707, 450);
+            this.Controls.Add(this.bAbout);
             this.Controls.Add(this.gAlive);
             this.Controls.Add(this.bSpawn);
             this.Controls.Add(this.gSize);
@@ -209,6 +220,7 @@
         private System.Windows.Forms.RadioButton rSmall;
         private System.Windows.Forms.GroupBox gAlive;
         private System.Windows.Forms.FlowLayoutPanel fpAlive;
+        private System.Windows.Forms.Button bAbout;
     }
 }
 
