@@ -95,5 +95,113 @@
   <ItemGroup>
     <None Include="Resources\M_Happy.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MonikaMediumHappy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MonikaMediumSDead.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MonikaMediumStanding.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MonikaLargeDead.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MonikaLargeHappy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MonikaLargeStanding.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MonikaSmallDead.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MonikaSmallHappy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MonikaSmallStanding.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NatsukiDeadLarge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NatsukiHappyLarge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NatsukiStandingLarge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NatsukiDeadMedium.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NatsukiHappyMedium.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NatsukiStandingMedium.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NatsukiDeadSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NatsukiHappysmalling.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NatsukiStandingsmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SayoriDeadLarge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SayoriHappyLarge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SayoriStandingLarge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SayoriDeadMedium.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SayoriHappyMedium.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SayoriStandingMedium.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SayoriDeadSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SayoriHappySmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SayoriStandingSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\YuriDeadLarge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\YuriHappyLarge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\YuriStandingLarge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\YuriDeadMedium.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\YuriHappyMedium.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\YuriStandingMedium.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\YuriDeadSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\YuriHappySmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\YuriStandingSmall.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

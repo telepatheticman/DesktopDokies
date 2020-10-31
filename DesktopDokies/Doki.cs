@@ -59,6 +59,18 @@ namespace DesktopDokies
             happy_Flip.RotateFlip(RotateFlipType.RotateNoneFlipX);
             standing_Flip.RotateFlip(RotateFlipType.RotateNoneFlipX);
 
+            this.Disposed += (ss, ee) =>
+            {
+                Fall.Dispose();
+                Jump.Dispose();
+                Move.Dispose();
+                Walk.Dispose();
+                happy.Dispose();
+                standing.Dispose();
+                happy_Flip.Dispose();
+                standing_Flip.Dispose();
+            };
+
             falling = true;
             this.image.MouseDown += image_MouseDown;
             this.image.MouseMove += image_MouseMove;
@@ -245,7 +257,7 @@ namespace DesktopDokies
                 this.Location = new Point(this.Location.X, floor);
                 walkHop = walkHopMax;
                 this.Update();
-                Console.WriteLine(track);
+                //Console.WriteLine(track);
                 Walk.Enabled = false;
                 Move.Enabled = true;
             }
