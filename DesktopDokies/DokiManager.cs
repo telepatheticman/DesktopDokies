@@ -24,6 +24,8 @@ namespace DesktopDokies
         public DokiManager()
         {
             InitializeComponent();
+
+            loadRes();
             //testList = new List<Doki>();
             //testList.Add(new Doki());
             //testList[0].Show();
@@ -35,14 +37,15 @@ namespace DesktopDokies
 
         private void spawn_Click(object sender, EventArgs e)
         {
-            Doki doki = new Doki();
+            Doki doki;//= new Doki();
+            Label t = new Label();
+            t.Text = getText();
+            doki = GetDoki();
             doki.Show();
             FlowLayoutPanel p = new FlowLayoutPanel();
             p.Name = "test";
             p.FlowDirection = FlowDirection.LeftToRight;
             p.Size = new Size(this.fpAlive.ClientSize.Width - 25, 25);
-            Label t = new Label();
-            t.Text = getText();
             p.Controls.Add(t);
 
             Button b = new Button();
@@ -109,6 +112,26 @@ namespace DesktopDokies
             Yuri_Res.Add(Properties.Resources.YuriDeadSmall);
         }
 
+        private Doki GetDoki()
+        {
+            if (this.rSayori.Checked)
+            {
+                return new Doki(Sayori_Res[0 + size*3], Sayori_Res[1 + size*3], Sayori_Res[2 + size*3], size);
+            }
+            else if (this.rNatsuki.Checked)
+            {
+                return new Doki(Natsuki_Res[0 + size*3], Natsuki_Res[1 + size*3], Natsuki_Res[2 + size*3], size);
+            }
+            else if (this.rYuri.Checked)
+            {
+                return new Doki(Yuri_Res[0 + size*3], Yuri_Res[1 + size*3], Yuri_Res[2 + size*3], size);
+            }
+            else
+            {
+                return new Doki(Monika_Res[0 + size*3], Monika_Res[1 + size*3], Monika_Res[2 + size*3], size);
+            }
+        }
+
         private String getText()
         {
             String text = "";
@@ -116,14 +139,17 @@ namespace DesktopDokies
             if(this.rLarge.Checked)
             {
                 text += "Large ";
+                size = 0;
             }
             else if (this.rMedium.Checked)
             {
                 text += "Medium ";
+                size = 1;
             }
             else
             {
                 text += "Small ";
+                size = 2;
             }
 
             if (this.rSayori.Checked)

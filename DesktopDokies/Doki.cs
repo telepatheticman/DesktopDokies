@@ -14,10 +14,11 @@ namespace DesktopDokies
     {
         Random rand = new Random();
 
-        Bitmap happy = Properties.Resources.M_Happy;
-        Bitmap standing = Properties.Resources.M_Standing;
-        Bitmap happy_Flip = Properties.Resources.M_Happy;
-        Bitmap standing_Flip = Properties.Resources.M_Standing;
+        Bitmap happy;// = Properties.Resources.M_Happy;
+        Bitmap standing;// = Properties.Resources.M_Standing;
+        Bitmap happy_Flip;// = Properties.Resources.M_Happy;
+        Bitmap standing_Flip;// = Properties.Resources.M_Standing;
+        Bitmap dead;
 
         public bool falling = true;
         private Timer Fall = new Timer();
@@ -50,11 +51,16 @@ namespace DesktopDokies
 
         int dir = 0;
 
-        public Doki()
+        public Doki(Bitmap S, Bitmap H, Bitmap D, int size)
         {
             //this.image.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
 
             InitializeComponent();
+            happy = H;
+            happy_Flip = H;
+            standing = S;
+            standing_Flip = S;
+            dead = D;
 
             happy_Flip.RotateFlip(RotateFlipType.RotateNoneFlipX);
             standing_Flip.RotateFlip(RotateFlipType.RotateNoneFlipX);

@@ -19,7 +19,7 @@ namespace DesktopDokies
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            monika = new Doki();
+            //monika = new Doki();
             Application.Run(new DokiManager());
 
         }
