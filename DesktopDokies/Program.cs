@@ -9,8 +9,6 @@ namespace DesktopDokies
 {
     static class Program
     {
-
-        static Doki monika;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -19,7 +17,6 @@ namespace DesktopDokies
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //monika = new Doki();
             Application.Run(new DokiManager());
 
         }

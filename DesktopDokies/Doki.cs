@@ -44,7 +44,6 @@ namespace DesktopDokies
         public int lWall;
 
         bool Flipped = false; //False if fasing left
-        bool fromFall = true;
 
         float speed = 0.0f;
         float acc = 0.5f;
@@ -106,11 +105,6 @@ namespace DesktopDokies
             floor = area.Height - this.image.Height + area.Y;
             rWall = area.Width - this.image.Width + area.X;
             lWall = area.X;
-
-            //Flip();
-
-            //dir = rand.Next(2);
-
             Fall.Start();
 
         }
@@ -134,7 +128,6 @@ namespace DesktopDokies
         private Point lastLocation;
         private int lastX;
 
-        //private delegate void Fall_Elapsed_Delligate(object sender, EventArgs e);
         private void Fall_Elapsed(object sender, EventArgs e)
         {
             if(this.Location.Y < floor)
@@ -153,10 +146,8 @@ namespace DesktopDokies
             }
             if (!falling)
             {
-                //changeImage(standing);
                 Fall.Enabled = false;
                 Jump.Enabled = true;
-                fromFall = true;
             }
         }
 
@@ -182,11 +173,8 @@ namespace DesktopDokies
             {
                 this.Location = new Point(
                     (this.Location.X - lastLocation.X) + e.X, (this.Location.Y - lastLocation.Y) + e.Y);
-                //Console.WriteLine(lastLocation.X);
                 if (lastX - Cursor.Position.X > 0 && Flipped) Flip();
                 if (lastX - Cursor.Position.X < 0 && !Flipped) Flip();
-                //Console.WriteLine($"lastX: {lastX}, eX: {Cursor.Position.X}");
-                //Console.WriteLine(Cursor.Position.X);
                 lastX = Cursor.Position.X;
                 this.Update();
             }
@@ -202,7 +190,6 @@ namespace DesktopDokies
             if (this.Location.X > rWall) this.Location = new Point(rWall, this.Location.Y);
             if (this.Location.X < lWall) this.Location = new Point(lWall, this.Location.Y);
             falling = true;
-            //Console.WriteLine($"Floor: {floor}, Height: {area.Height}, Corner: {area.X}, {area.Y}");
             Fall.Start();
             setHappy();
             mouseDown = false;
@@ -287,7 +274,6 @@ namespace DesktopDokies
                 this.Location = new Point(this.Location.X, floor);
                 walkHop = walkHopMax;
                 this.Update();
-                //Console.WriteLine(track);
                 Walk.Enabled = false;
                 Move.Enabled = true;
             }
@@ -295,11 +281,11 @@ namespace DesktopDokies
 
         private void Move_Elapsed(object sender, EventArgs e)
         {
-            int willMove = rand.Next(3); 
+            int willMove = rand.Next(5); 
 
             if(willMove == 0)
             {
-                int willJump = rand.Next(6);
+                int willJump = rand.Next(10);
                 if(willJump == 0)
                 {
                     setHappy();
@@ -313,10 +299,6 @@ namespace DesktopDokies
                     if (dir == 0) dir = -1;
                     if ((dir < 0 && Flipped) || (dir > 0 && !Flipped)) Flip();
                     setStanding();
-                    //Flip();
-                    //this.image.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
-                    //this.image.Image = happy;
-
                     this.Update();
                     Walk.Enabled = true;
                     Move.Enabled = false;

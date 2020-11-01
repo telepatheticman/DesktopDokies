@@ -73,26 +73,6 @@ namespace DesktopDokies.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap M_Happy {
-            get {
-                object obj = ResourceManager.GetObject("M_Happy", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap M_Standing {
-            get {
-                object obj = ResourceManager.GetObject("M_Standing", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap MonikaLargeDead {
             get {
                 object obj = ResourceManager.GetObject("MonikaLargeDead", resourceCulture);
