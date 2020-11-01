@@ -215,5 +215,44 @@
   <ItemGroup>
     <None Include="Resources\YuriStandingMediumTest %281%29.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MonikaLargeStandingGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SayoriDeadLargeGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SayoriHappyLargeGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SayoriStandingLargeGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\YuriDeadLargeGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\YuriHappyLargeGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\YuriStandingLargeGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\YuriStandingSmallGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NatsukiDeadLargeGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NatsukiHappyLargeGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NatsukiStandingLargeGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\M_Happy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MonikaLargeHappyGreen.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
