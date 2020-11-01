@@ -249,9 +249,6 @@
     <None Include="Resources\NatsukiStandingLargeGreen.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\M_Happy.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\MonikaLargeHappyGreen.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

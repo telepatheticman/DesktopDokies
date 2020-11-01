@@ -285,7 +285,7 @@ namespace DesktopDokies
 
             if(willMove == 0)
             {
-                int willJump = rand.Next(10);
+                int willJump = rand.Next(15);
                 if(willJump == 0)
                 {
                     setHappy();
