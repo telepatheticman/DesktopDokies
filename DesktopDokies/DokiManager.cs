@@ -24,6 +24,7 @@ namespace DesktopDokies
         public DokiManager()
         {
             bool CloseButton = false;
+            bool Told = false;
             InitializeComponent();
 
             loadRes();
@@ -46,7 +47,11 @@ namespace DesktopDokies
                     ee.Cancel = true;
                     notifyIcon1.Visible = true;
                     this.Hide();
-                    //notifyIcon1.ShowBalloonTip(500);
+                    if(!Told)
+                    {
+                        notifyIcon1.ShowBalloonTip(500);
+                        Told = true;
+                    }
                 }
             };
 

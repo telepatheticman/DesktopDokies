@@ -190,7 +190,8 @@
             // notifyIcon1
             // 
             this.notifyIcon1.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.notifyIcon1.BalloonTipText = "We are still running in the background";
+            this.notifyIcon1.BalloonTipText = "We are still running in the background. Use End Desktop Dokies to kill us for goo" +
+    "d.";
             this.notifyIcon1.BalloonTipTitle = "Still Running";
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Text = "Desktop Dokies";
