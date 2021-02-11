@@ -125,7 +125,6 @@ namespace DesktopDokies
             
             this.image.Image = dead;
             this.Update();
-            //Die.Enabled = true;
             Die.Start();
             Walk.Enabled = false;
             Fall.Enabled = false;

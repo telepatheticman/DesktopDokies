@@ -87,18 +87,10 @@ namespace DesktopDokies
 
             b.Click += (ss, ee) => 
             {
-                if (true)
-                {
-                    //doki.BeginInvoke(new MethodInvoker(delegate 
-                    //{ 
-                    //    doki.DokiClose();
-                    //    doki.Dispose();
-                    //}));
-                    this.fpAlive.Controls.Remove(p);
-                    p.Dispose();
-                    t.Dispose();
-                    b.Dispose();
-                }
+                this.fpAlive.Controls.Remove(p);
+                p.Dispose();
+                t.Dispose();
+                b.Dispose();
             };
 
             b.Click += doki.DokiCloseHandle;
