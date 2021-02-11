@@ -100,7 +100,7 @@ namespace DesktopDokies
             Walk.Interval = 10;
 
             Move.Tick += new EventHandler(Move_Elapsed);
-            Move.Interval = 1000;
+            Move.Interval = rand.Next(750, 2751);
 
             Die.Tick += new EventHandler(Die_Elapsed);
             Die.Interval = 10;
@@ -339,7 +339,7 @@ namespace DesktopDokies
                     Move.Enabled = false;
                 }
             }
-
+            Move.Interval = rand.Next(750, 2751);
         }
     }
 }
