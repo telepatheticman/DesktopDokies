@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+//using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -37,6 +38,8 @@ namespace DesktopDokies
         private Timer Walk = new Timer();
 
         private Timer Move = new Timer();
+
+        private Timer Die = new Timer();
 
         public int floor;
 
@@ -98,6 +101,9 @@ namespace DesktopDokies
 
             Move.Tick += new EventHandler(Move_Elapsed);
             Move.Interval = 1000;
+
+            Die.Tick += new EventHandler(Die_Elapsed);
+            Die.Interval = 10;
             
             this.image.Image = happy;
             Screen myScreen = Screen.FromControl(this);
@@ -109,24 +115,54 @@ namespace DesktopDokies
 
         }
 
+        public void DokiCloseHandle(object sender, EventArgs e)
+        {
+            this.BeginInvoke(new MethodInvoker(delegate {  DokiClose(); }));
+        }
+
         public void DokiClose()
         {
             
             this.image.Image = dead;
             this.Update();
-            for (int i = 0; i < 100; i++)
+            //Die.Enabled = true;
+            Die.Start();
+            Walk.Enabled = false;
+            Fall.Enabled = false;
+            Jump.Enabled = false;
+            Move.Enabled = false;
+
+
+            /*for (int i = 0; i < 100; i++)
             {
-                var t = Task.Delay(5);
+                System.Threading.Thread.Sleep(10);
+                //var t = Task.Delay(5);
                 this.Opacity -= .01;
                 this.Update();
-                t.Wait();
+                //t.Wait();
             }
-            this.Close();
+            this.Dispose();
+            this.Close();*/
         }
 
         private bool mouseDown;
         private Point lastLocation;
         private int lastX;
+
+        private void Die_Elapsed(object sender, EventArgs e)
+        {
+            if(this.Opacity > 0)
+            {
+                this.Opacity -= .01;
+                this.Update();
+            }
+            else
+            {
+                Die.Enabled = false;
+                this.Dispose();
+                this.Close();
+            }
+        }
 
         private void Fall_Elapsed(object sender, EventArgs e)
         {
