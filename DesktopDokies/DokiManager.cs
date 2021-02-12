@@ -21,8 +21,14 @@ namespace DesktopDokies
         List<Bitmap> Natsuki_Res;
         List<Bitmap> Sayori_Res;
         int size;
+        Random Rand;
+        Screen myScreen;
+        Rectangle area;
         public DokiManager()
         {
+            myScreen = Screen.FromControl(this);
+            area = myScreen.WorkingArea;
+            Rand = new Random();
             bool CloseButton = false;
             bool Told = false;
             InitializeComponent();
@@ -74,6 +80,8 @@ namespace DesktopDokies
             Label t = new Label();
             t.Text = getText();
             doki = GetDoki();
+            //doki.StartPosition = FormStartPosition.Manual;
+            doki.Location = new Point(Rand.Next(0, area.Width - doki.Width + area.X), Rand.Next(0, area.Height/4));
             doki.Show();
             FlowLayoutPanel p = new FlowLayoutPanel();
             p.Name = "test";
