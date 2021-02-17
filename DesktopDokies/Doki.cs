@@ -58,11 +58,11 @@ namespace DesktopDokies
             //this.image.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
 
             InitializeComponent();
-            happy = H;
+            happy = (Bitmap)H.Clone();
             happy_Flip = (Bitmap)H.Clone();
-            standing = S;
+            standing = (Bitmap)S.Clone();
             standing_Flip = (Bitmap)S.Clone();
-            dead = D;
+            dead = (Bitmap)D.Clone();
 
             walkHopMax += 2 * size + 1;
             jumpSpeedMax += 2 * size + 1;
@@ -80,10 +80,12 @@ namespace DesktopDokies
                 Jump.Dispose();
                 Move.Dispose();
                 Walk.Dispose();
-                //happy.Dispose();
-                //standing.Dispose();
-                //happy_Flip.Dispose();
-                //standing_Flip.Dispose();
+                Die.Dispose();
+                happy.Dispose();
+                standing.Dispose();
+                happy_Flip.Dispose();
+                standing_Flip.Dispose();
+                dead.Dispose();
             };
 
             falling = true;
@@ -105,7 +107,7 @@ namespace DesktopDokies
             Die.Tick += new EventHandler(Die_Elapsed);
             Die.Interval = 10;
             
-            this.image.Image = happy;
+            setHappy();
             Screen myScreen = Screen.FromControl(this);
             Rectangle area = myScreen.WorkingArea;
             floor = area.Height - this.image.Height + area.Y;
@@ -142,6 +144,7 @@ namespace DesktopDokies
             }
             this.Dispose();
             this.Close();*/
+            //this.Dispose();
         }
 
         private bool mouseDown;
@@ -211,6 +214,7 @@ namespace DesktopDokies
                 if (lastX - Cursor.Position.X > 0 && Flipped) Flip();
                 if (lastX - Cursor.Position.X < 0 && !Flipped) Flip();
                 lastX = Cursor.Position.X;
+                setHappy();
                 this.Update();
             }
         }
