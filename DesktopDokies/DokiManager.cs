@@ -81,7 +81,7 @@ namespace DesktopDokies
             t.Text = getText();
             doki = GetDoki();
             //doki.StartPosition = FormStartPosition.Manual;
-            doki.Location = new Point(Rand.Next(0, area.Width - doki.Width + area.X), Rand.Next(0, area.Height/4));
+            doki.Location = new Point(Rand.Next(0, doki.rWall), Rand.Next(0, doki.floor/2));
             doki.Show();
             FlowLayoutPanel p = new FlowLayoutPanel();
             p.Name = "test";
