@@ -19,6 +19,13 @@ namespace DesktopDokies
         wYuri = 2,
         wMonika =3
     }
+
+    enum DokiSize
+    {
+        Small = 2,
+        Medium = 1,
+        Large = 0
+    }
     public partial class DokiManager : Form
     {
         //Dictionary<Doki, > dokies;
@@ -27,7 +34,6 @@ namespace DesktopDokies
         List<Bitmap> Yuri_Res;
         List<Bitmap> Natsuki_Res;
         List<Bitmap> Sayori_Res;
-        //int size;
         Random Rand;
         Screen myScreen;
         Rectangle area;
@@ -78,11 +84,11 @@ namespace DesktopDokies
                 this.Show();
                 notifyIcon1.Visible = false;
             };
-
-            addDoki(Who.wSayori, 1);
-            addDoki(Who.wNatsuki, 1);
-            addDoki(Who.wYuri, 1);
-            addDoki(Who.wMonika, 1);
+            
+            addDoki(Who.wSayori, (int)DokiSize.Medium);
+            addDoki(Who.wNatsuki, (int)DokiSize.Medium);
+            addDoki(Who.wYuri, (int)DokiSize.Medium);
+            addDoki(Who.wMonika, (int)DokiSize.Medium);
         }
 
         private void addDokiControlls(Doki doki)
@@ -239,15 +245,15 @@ namespace DesktopDokies
         {
             if (this.rLarge.Checked)
             {
-                return 0;
+                return (int)DokiSize.Large;
             }
             else if (this.rMedium.Checked)
             {
-                return 1;
+                return (int)DokiSize.Medium;
             }
             else
             {
-                return 2;
+                return (int)DokiSize.Small;
             }
         }
 

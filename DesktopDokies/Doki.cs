@@ -53,7 +53,7 @@ namespace DesktopDokies
 
         int dir = 0;
 
-        //Size ranges from 0(Small) to 2(Large)
+        //Size ranges from 0(Large) to 2(small)
         public Doki(Bitmap S, Bitmap H, Bitmap D, int size)
         {
             //this.image.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
