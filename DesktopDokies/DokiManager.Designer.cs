@@ -46,9 +46,42 @@
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.bClose = new System.Windows.Forms.Button();
             this.bRain = new System.Windows.Forms.Button();
+            this.gSettings = new System.Windows.Forms.GroupBox();
+            this.fpSettings = new System.Windows.Forms.FlowLayoutPanel();
+            this.gDoki = new System.Windows.Forms.GroupBox();
+            this.cSayori = new System.Windows.Forms.CheckBox();
+            this.cMonika = new System.Windows.Forms.CheckBox();
+            this.cYuri = new System.Windows.Forms.CheckBox();
+            this.cNatsuki = new System.Windows.Forms.CheckBox();
+            this.gDokiSize = new System.Windows.Forms.GroupBox();
+            this.cSmall = new System.Windows.Forms.CheckBox();
+            this.cMedium = new System.Windows.Forms.CheckBox();
+            this.cLarge = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tFreq = new System.Windows.Forms.TrackBar();
+            this.nFreq = new System.Windows.Forms.NumericUpDown();
+            this.gAmount = new System.Windows.Forms.GroupBox();
+            this.tAmount = new System.Windows.Forms.TrackBar();
+            this.nAmount = new System.Windows.Forms.NumericUpDown();
+            this.bMonika = new System.Windows.Forms.Button();
+            this.fpSettingButtons = new System.Windows.Forms.FlowLayoutPanel();
+            this.bApply = new System.Windows.Forms.Button();
+            this.bReset = new System.Windows.Forms.Button();
+            this.bKillAll = new System.Windows.Forms.Button();
             this.gCharacter.SuspendLayout();
             this.gSize.SuspendLayout();
             this.gAlive.SuspendLayout();
+            this.gSettings.SuspendLayout();
+            this.fpSettings.SuspendLayout();
+            this.gDoki.SuspendLayout();
+            this.gDokiSize.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tFreq)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nFreq)).BeginInit();
+            this.gAmount.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tAmount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nAmount)).BeginInit();
+            this.fpSettingButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // gCharacter
@@ -57,11 +90,9 @@
             this.gCharacter.Controls.Add(this.rYuri);
             this.gCharacter.Controls.Add(this.rMonika);
             this.gCharacter.Controls.Add(this.rSayori);
-            this.gCharacter.Location = new System.Drawing.Point(16, 15);
-            this.gCharacter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gCharacter.Location = new System.Drawing.Point(12, 12);
             this.gCharacter.Name = "gCharacter";
-            this.gCharacter.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.gCharacter.Size = new System.Drawing.Size(289, 126);
+            this.gCharacter.Size = new System.Drawing.Size(217, 102);
             this.gCharacter.TabIndex = 0;
             this.gCharacter.TabStop = false;
             this.gCharacter.Text = "Character";
@@ -69,10 +100,9 @@
             // rNatsuki
             // 
             this.rNatsuki.AutoSize = true;
-            this.rNatsuki.Location = new System.Drawing.Point(180, 86);
-            this.rNatsuki.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rNatsuki.Location = new System.Drawing.Point(135, 70);
             this.rNatsuki.Name = "rNatsuki";
-            this.rNatsuki.Size = new System.Drawing.Size(76, 21);
+            this.rNatsuki.Size = new System.Drawing.Size(61, 17);
             this.rNatsuki.TabIndex = 3;
             this.rNatsuki.Text = "Natsuki";
             this.rNatsuki.UseVisualStyleBackColor = true;
@@ -80,10 +110,9 @@
             // rYuri
             // 
             this.rYuri.AutoSize = true;
-            this.rYuri.Location = new System.Drawing.Point(27, 86);
-            this.rYuri.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rYuri.Location = new System.Drawing.Point(20, 70);
             this.rYuri.Name = "rYuri";
-            this.rYuri.Size = new System.Drawing.Size(54, 21);
+            this.rYuri.Size = new System.Drawing.Size(43, 17);
             this.rYuri.TabIndex = 2;
             this.rYuri.Text = "Yuri";
             this.rYuri.UseVisualStyleBackColor = true;
@@ -91,10 +120,9 @@
             // rMonika
             // 
             this.rMonika.AutoSize = true;
-            this.rMonika.Location = new System.Drawing.Point(180, 25);
-            this.rMonika.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rMonika.Location = new System.Drawing.Point(135, 20);
             this.rMonika.Name = "rMonika";
-            this.rMonika.Size = new System.Drawing.Size(74, 21);
+            this.rMonika.Size = new System.Drawing.Size(60, 17);
             this.rMonika.TabIndex = 1;
             this.rMonika.Text = "Monika";
             this.rMonika.UseVisualStyleBackColor = true;
@@ -103,10 +131,9 @@
             // 
             this.rSayori.AutoSize = true;
             this.rSayori.Checked = true;
-            this.rSayori.Location = new System.Drawing.Point(27, 23);
-            this.rSayori.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rSayori.Location = new System.Drawing.Point(20, 19);
             this.rSayori.Name = "rSayori";
-            this.rSayori.Size = new System.Drawing.Size(69, 21);
+            this.rSayori.Size = new System.Drawing.Size(54, 17);
             this.rSayori.TabIndex = 0;
             this.rSayori.TabStop = true;
             this.rSayori.Text = "Sayori";
@@ -117,11 +144,9 @@
             this.gSize.Controls.Add(this.rLarge);
             this.gSize.Controls.Add(this.rMedium);
             this.gSize.Controls.Add(this.rSmall);
-            this.gSize.Location = new System.Drawing.Point(313, 15);
-            this.gSize.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gSize.Location = new System.Drawing.Point(235, 12);
             this.gSize.Name = "gSize";
-            this.gSize.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.gSize.Size = new System.Drawing.Size(304, 126);
+            this.gSize.Size = new System.Drawing.Size(228, 102);
             this.gSize.TabIndex = 1;
             this.gSize.TabStop = false;
             this.gSize.Text = "Size";
@@ -129,10 +154,9 @@
             // rLarge
             // 
             this.rLarge.AutoSize = true;
-            this.rLarge.Location = new System.Drawing.Point(219, 53);
-            this.rLarge.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rLarge.Location = new System.Drawing.Point(164, 43);
             this.rLarge.Name = "rLarge";
-            this.rLarge.Size = new System.Drawing.Size(66, 21);
+            this.rLarge.Size = new System.Drawing.Size(52, 17);
             this.rLarge.TabIndex = 2;
             this.rLarge.Text = "Large";
             this.rLarge.UseVisualStyleBackColor = true;
@@ -141,10 +165,9 @@
             // 
             this.rMedium.AutoSize = true;
             this.rMedium.Checked = true;
-            this.rMedium.Location = new System.Drawing.Point(104, 53);
-            this.rMedium.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rMedium.Location = new System.Drawing.Point(78, 43);
             this.rMedium.Name = "rMedium";
-            this.rMedium.Size = new System.Drawing.Size(78, 21);
+            this.rMedium.Size = new System.Drawing.Size(62, 17);
             this.rMedium.TabIndex = 1;
             this.rMedium.TabStop = true;
             this.rMedium.Text = "Medium";
@@ -153,20 +176,18 @@
             // rSmall
             // 
             this.rSmall.AutoSize = true;
-            this.rSmall.Location = new System.Drawing.Point(9, 53);
-            this.rSmall.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rSmall.Location = new System.Drawing.Point(7, 43);
             this.rSmall.Name = "rSmall";
-            this.rSmall.Size = new System.Drawing.Size(63, 21);
+            this.rSmall.Size = new System.Drawing.Size(50, 17);
             this.rSmall.TabIndex = 0;
             this.rSmall.Text = "Small";
             this.rSmall.UseVisualStyleBackColor = true;
             // 
             // bSpawn
             // 
-            this.bSpawn.Location = new System.Drawing.Point(735, 38);
-            this.bSpawn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bSpawn.Location = new System.Drawing.Point(551, 12);
             this.bSpawn.Name = "bSpawn";
-            this.bSpawn.Size = new System.Drawing.Size(107, 33);
+            this.bSpawn.Size = new System.Drawing.Size(80, 27);
             this.bSpawn.TabIndex = 2;
             this.bSpawn.Text = "Spawn";
             this.bSpawn.UseVisualStyleBackColor = true;
@@ -174,11 +195,9 @@
             // gAlive
             // 
             this.gAlive.Controls.Add(this.fpAlive);
-            this.gAlive.Location = new System.Drawing.Point(16, 197);
-            this.gAlive.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gAlive.Location = new System.Drawing.Point(12, 160);
             this.gAlive.Name = "gAlive";
-            this.gAlive.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.gAlive.Size = new System.Drawing.Size(601, 292);
+            this.gAlive.Size = new System.Drawing.Size(451, 237);
             this.gAlive.TabIndex = 3;
             this.gAlive.TabStop = false;
             this.gAlive.Text = "Alive";
@@ -187,19 +206,17 @@
             // 
             this.fpAlive.AutoScroll = true;
             this.fpAlive.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.fpAlive.Location = new System.Drawing.Point(9, 25);
-            this.fpAlive.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.fpAlive.Location = new System.Drawing.Point(7, 20);
             this.fpAlive.Name = "fpAlive";
-            this.fpAlive.Size = new System.Drawing.Size(584, 260);
+            this.fpAlive.Size = new System.Drawing.Size(438, 211);
             this.fpAlive.TabIndex = 0;
             this.fpAlive.WrapContents = false;
             // 
             // bAbout
             // 
-            this.bAbout.Location = new System.Drawing.Point(800, 505);
-            this.bAbout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bAbout.Location = new System.Drawing.Point(600, 410);
             this.bAbout.Name = "bAbout";
-            this.bAbout.Size = new System.Drawing.Size(127, 34);
+            this.bAbout.Size = new System.Drawing.Size(95, 28);
             this.bAbout.TabIndex = 4;
             this.bAbout.Text = "About";
             this.bAbout.UseVisualStyleBackColor = true;
@@ -215,29 +232,289 @@
             // 
             // bClose
             // 
-            this.bClose.Location = new System.Drawing.Point(624, 505);
-            this.bClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bClose.Location = new System.Drawing.Point(468, 410);
             this.bClose.Name = "bClose";
-            this.bClose.Size = new System.Drawing.Size(168, 34);
+            this.bClose.Size = new System.Drawing.Size(126, 28);
             this.bClose.TabIndex = 5;
             this.bClose.Text = "End Desktop Dokies";
             this.bClose.UseVisualStyleBackColor = true;
             // 
             // bRain
             // 
-            this.bRain.Location = new System.Drawing.Point(735, 89);
-            this.bRain.Margin = new System.Windows.Forms.Padding(4);
+            this.bRain.Location = new System.Drawing.Point(551, 50);
             this.bRain.Name = "bRain";
-            this.bRain.Size = new System.Drawing.Size(107, 33);
+            this.bRain.Size = new System.Drawing.Size(80, 27);
             this.bRain.TabIndex = 6;
             this.bRain.Text = "Start Rain";
             this.bRain.UseVisualStyleBackColor = true;
             // 
+            // gSettings
+            // 
+            this.gSettings.Controls.Add(this.fpSettings);
+            this.gSettings.Location = new System.Drawing.Point(494, 160);
+            this.gSettings.Name = "gSettings";
+            this.gSettings.Size = new System.Drawing.Size(200, 237);
+            this.gSettings.TabIndex = 7;
+            this.gSettings.TabStop = false;
+            this.gSettings.Text = "settings";
+            // 
+            // fpSettings
+            // 
+            this.fpSettings.AutoScroll = true;
+            this.fpSettings.Controls.Add(this.gDoki);
+            this.fpSettings.Controls.Add(this.gDokiSize);
+            this.fpSettings.Controls.Add(this.groupBox1);
+            this.fpSettings.Controls.Add(this.gAmount);
+            this.fpSettings.Controls.Add(this.fpSettingButtons);
+            this.fpSettings.Location = new System.Drawing.Point(6, 20);
+            this.fpSettings.Name = "fpSettings";
+            this.fpSettings.Size = new System.Drawing.Size(188, 211);
+            this.fpSettings.TabIndex = 0;
+            // 
+            // gDoki
+            // 
+            this.gDoki.Controls.Add(this.cNatsuki);
+            this.gDoki.Controls.Add(this.cYuri);
+            this.gDoki.Controls.Add(this.cMonika);
+            this.gDoki.Controls.Add(this.cSayori);
+            this.gDoki.Location = new System.Drawing.Point(3, 3);
+            this.gDoki.Name = "gDoki";
+            this.gDoki.Size = new System.Drawing.Size(163, 71);
+            this.gDoki.TabIndex = 0;
+            this.gDoki.TabStop = false;
+            this.gDoki.Text = "Dokis To Rain";
+            // 
+            // cSayori
+            // 
+            this.cSayori.AutoSize = true;
+            this.cSayori.Checked = true;
+            this.cSayori.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cSayori.Location = new System.Drawing.Point(7, 20);
+            this.cSayori.Name = "cSayori";
+            this.cSayori.Size = new System.Drawing.Size(55, 17);
+            this.cSayori.TabIndex = 0;
+            this.cSayori.Text = "Sayori";
+            this.cSayori.UseVisualStyleBackColor = true;
+            // 
+            // cMonika
+            // 
+            this.cMonika.AutoSize = true;
+            this.cMonika.Checked = true;
+            this.cMonika.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cMonika.Location = new System.Drawing.Point(96, 20);
+            this.cMonika.Name = "cMonika";
+            this.cMonika.Size = new System.Drawing.Size(61, 17);
+            this.cMonika.TabIndex = 1;
+            this.cMonika.Text = "Monika";
+            this.cMonika.UseVisualStyleBackColor = true;
+            // 
+            // cYuri
+            // 
+            this.cYuri.AutoSize = true;
+            this.cYuri.Checked = true;
+            this.cYuri.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cYuri.Location = new System.Drawing.Point(7, 48);
+            this.cYuri.Name = "cYuri";
+            this.cYuri.Size = new System.Drawing.Size(44, 17);
+            this.cYuri.TabIndex = 2;
+            this.cYuri.Text = "Yuri";
+            this.cYuri.UseVisualStyleBackColor = true;
+            // 
+            // cNatsuki
+            // 
+            this.cNatsuki.AutoSize = true;
+            this.cNatsuki.Checked = true;
+            this.cNatsuki.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cNatsuki.Location = new System.Drawing.Point(95, 48);
+            this.cNatsuki.Name = "cNatsuki";
+            this.cNatsuki.Size = new System.Drawing.Size(62, 17);
+            this.cNatsuki.TabIndex = 3;
+            this.cNatsuki.Text = "Natsuki";
+            this.cNatsuki.UseVisualStyleBackColor = true;
+            // 
+            // gDokiSize
+            // 
+            this.gDokiSize.Controls.Add(this.cLarge);
+            this.gDokiSize.Controls.Add(this.cMedium);
+            this.gDokiSize.Controls.Add(this.cSmall);
+            this.gDokiSize.Location = new System.Drawing.Point(3, 80);
+            this.gDokiSize.Name = "gDokiSize";
+            this.gDokiSize.Size = new System.Drawing.Size(163, 65);
+            this.gDokiSize.TabIndex = 1;
+            this.gDokiSize.TabStop = false;
+            this.gDokiSize.Text = "Doki Size To Rain";
+            // 
+            // cSmall
+            // 
+            this.cSmall.AutoSize = true;
+            this.cSmall.Checked = true;
+            this.cSmall.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cSmall.Location = new System.Drawing.Point(7, 20);
+            this.cSmall.Name = "cSmall";
+            this.cSmall.Size = new System.Drawing.Size(51, 17);
+            this.cSmall.TabIndex = 0;
+            this.cSmall.Text = "Small";
+            this.cSmall.UseVisualStyleBackColor = true;
+            // 
+            // cMedium
+            // 
+            this.cMedium.AutoSize = true;
+            this.cMedium.Location = new System.Drawing.Point(94, 20);
+            this.cMedium.Name = "cMedium";
+            this.cMedium.Size = new System.Drawing.Size(63, 17);
+            this.cMedium.TabIndex = 1;
+            this.cMedium.Text = "Medium";
+            this.cMedium.UseVisualStyleBackColor = true;
+            // 
+            // cLarge
+            // 
+            this.cLarge.AutoSize = true;
+            this.cLarge.Location = new System.Drawing.Point(48, 43);
+            this.cLarge.Name = "cLarge";
+            this.cLarge.Size = new System.Drawing.Size(53, 17);
+            this.cLarge.TabIndex = 2;
+            this.cLarge.Text = "Large";
+            this.cLarge.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.nFreq);
+            this.groupBox1.Controls.Add(this.tFreq);
+            this.groupBox1.Location = new System.Drawing.Point(3, 151);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(163, 66);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Rain Frequency";
+            // 
+            // tFreq
+            // 
+            this.tFreq.Location = new System.Drawing.Point(6, 19);
+            this.tFreq.Maximum = 15;
+            this.tFreq.Minimum = 1;
+            this.tFreq.Name = "tFreq";
+            this.tFreq.Size = new System.Drawing.Size(104, 45);
+            this.tFreq.TabIndex = 0;
+            this.tFreq.Value = 1;
+            // 
+            // nFreq
+            // 
+            this.nFreq.Location = new System.Drawing.Point(116, 19);
+            this.nFreq.Maximum = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            this.nFreq.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nFreq.Name = "nFreq";
+            this.nFreq.Size = new System.Drawing.Size(40, 20);
+            this.nFreq.TabIndex = 1;
+            this.nFreq.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // gAmount
+            // 
+            this.gAmount.Controls.Add(this.nAmount);
+            this.gAmount.Controls.Add(this.tAmount);
+            this.gAmount.Location = new System.Drawing.Point(3, 223);
+            this.gAmount.Name = "gAmount";
+            this.gAmount.Size = new System.Drawing.Size(163, 66);
+            this.gAmount.TabIndex = 3;
+            this.gAmount.TabStop = false;
+            this.gAmount.Text = "Rain Amount";
+            // 
+            // tAmount
+            // 
+            this.tAmount.Location = new System.Drawing.Point(7, 19);
+            this.tAmount.Minimum = 1;
+            this.tAmount.Name = "tAmount";
+            this.tAmount.Size = new System.Drawing.Size(104, 45);
+            this.tAmount.TabIndex = 1;
+            this.tAmount.Value = 1;
+            // 
+            // nAmount
+            // 
+            this.nAmount.Location = new System.Drawing.Point(116, 19);
+            this.nAmount.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nAmount.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nAmount.Name = "nAmount";
+            this.nAmount.Size = new System.Drawing.Size(40, 20);
+            this.nAmount.TabIndex = 2;
+            this.nAmount.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // bMonika
+            // 
+            this.bMonika.Location = new System.Drawing.Point(600, 457);
+            this.bMonika.Name = "bMonika";
+            this.bMonika.Size = new System.Drawing.Size(94, 28);
+            this.bMonika.TabIndex = 8;
+            this.bMonika.Text = "Just Monika";
+            this.bMonika.UseVisualStyleBackColor = true;
+            // 
+            // fpSettingButtons
+            // 
+            this.fpSettingButtons.Controls.Add(this.bApply);
+            this.fpSettingButtons.Controls.Add(this.bReset);
+            this.fpSettingButtons.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.fpSettingButtons.Location = new System.Drawing.Point(3, 295);
+            this.fpSettingButtons.Name = "fpSettingButtons";
+            this.fpSettingButtons.Size = new System.Drawing.Size(163, 30);
+            this.fpSettingButtons.TabIndex = 4;
+            // 
+            // bApply
+            // 
+            this.bApply.Location = new System.Drawing.Point(85, 3);
+            this.bApply.Name = "bApply";
+            this.bApply.Size = new System.Drawing.Size(75, 23);
+            this.bApply.TabIndex = 0;
+            this.bApply.Text = "Apply";
+            this.bApply.UseVisualStyleBackColor = true;
+            // 
+            // bReset
+            // 
+            this.bReset.Location = new System.Drawing.Point(4, 3);
+            this.bReset.Name = "bReset";
+            this.bReset.Size = new System.Drawing.Size(75, 23);
+            this.bReset.TabIndex = 1;
+            this.bReset.Text = "Reset";
+            this.bReset.UseVisualStyleBackColor = true;
+            // 
+            // bKillAll
+            // 
+            this.bKillAll.Location = new System.Drawing.Point(551, 87);
+            this.bKillAll.Name = "bKillAll";
+            this.bKillAll.Size = new System.Drawing.Size(80, 27);
+            this.bKillAll.TabIndex = 9;
+            this.bKillAll.Text = "Kill All";
+            this.bKillAll.UseVisualStyleBackColor = true;
+            // 
             // DokiManager
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(942, 553);
+            this.ClientSize = new System.Drawing.Size(706, 446);
+            this.Controls.Add(this.bKillAll);
+            this.Controls.Add(this.bMonika);
+            this.Controls.Add(this.gSettings);
             this.Controls.Add(this.bRain);
             this.Controls.Add(this.bClose);
             this.Controls.Add(this.bAbout);
@@ -246,7 +523,8 @@
             this.Controls.Add(this.gSize);
             this.Controls.Add(this.gCharacter);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MaximumSize = new System.Drawing.Size(722, 530);
+            this.MinimumSize = new System.Drawing.Size(722, 485);
             this.Name = "DokiManager";
             this.Text = "Doki Manager";
             this.gCharacter.ResumeLayout(false);
@@ -254,6 +532,21 @@
             this.gSize.ResumeLayout(false);
             this.gSize.PerformLayout();
             this.gAlive.ResumeLayout(false);
+            this.gSettings.ResumeLayout(false);
+            this.fpSettings.ResumeLayout(false);
+            this.gDoki.ResumeLayout(false);
+            this.gDoki.PerformLayout();
+            this.gDokiSize.ResumeLayout(false);
+            this.gDokiSize.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tFreq)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nFreq)).EndInit();
+            this.gAmount.ResumeLayout(false);
+            this.gAmount.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tAmount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nAmount)).EndInit();
+            this.fpSettingButtons.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -276,6 +569,28 @@
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.Button bClose;
         private System.Windows.Forms.Button bRain;
+        private System.Windows.Forms.GroupBox gSettings;
+        private System.Windows.Forms.FlowLayoutPanel fpSettings;
+        private System.Windows.Forms.GroupBox gDoki;
+        private System.Windows.Forms.CheckBox cNatsuki;
+        private System.Windows.Forms.CheckBox cYuri;
+        private System.Windows.Forms.CheckBox cMonika;
+        private System.Windows.Forms.CheckBox cSayori;
+        private System.Windows.Forms.GroupBox gDokiSize;
+        private System.Windows.Forms.CheckBox cLarge;
+        private System.Windows.Forms.CheckBox cMedium;
+        private System.Windows.Forms.CheckBox cSmall;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.NumericUpDown nFreq;
+        private System.Windows.Forms.TrackBar tFreq;
+        private System.Windows.Forms.GroupBox gAmount;
+        private System.Windows.Forms.NumericUpDown nAmount;
+        private System.Windows.Forms.TrackBar tAmount;
+        private System.Windows.Forms.Button bMonika;
+        private System.Windows.Forms.FlowLayoutPanel fpSettingButtons;
+        private System.Windows.Forms.Button bApply;
+        private System.Windows.Forms.Button bReset;
+        private System.Windows.Forms.Button bKillAll;
     }
 }
 
