@@ -12,6 +12,13 @@ using System.Windows.Forms;
 
 namespace DesktopDokies
 {
+    enum Who
+    {
+        wSayori = 0,
+        wNatsuki = 1,
+        wYuri = 2,
+        wMonika =3
+    }
     public partial class DokiManager : Form
     {
         //Dictionary<Doki, > dokies;
@@ -71,17 +78,22 @@ namespace DesktopDokies
                 this.Show();
                 notifyIcon1.Visible = false;
             };
+
+            addDoki(Who.wSayori, 1);
+            addDoki(Who.wNatsuki, 1);
+            addDoki(Who.wYuri, 1);
+            addDoki(Who.wMonika, 1);
         }
 
-
-        private void spawn_Click(object sender, EventArgs e)
+        private void addDokiControlls(Doki doki)
         {
-            Doki doki;//= new Doki();
+            //Doki doki;//= new Doki();
             Label t = new Label();
             t.Text = getText();
-            doki = GetDoki();
+            //getSize();
+            //doki = GetDoki();
             //doki.StartPosition = FormStartPosition.Manual;
-            doki.Location = new Point(Rand.Next(0, doki.rWall), Rand.Next(0, doki.floor/2));
+            doki.Location = new Point(Rand.Next(0, doki.rWall), Rand.Next(0, doki.floor / 2));
             doki.Show();
             FlowLayoutPanel p = new FlowLayoutPanel();
             p.Name = "test";
@@ -93,7 +105,7 @@ namespace DesktopDokies
             b.Text = "Kill";
             p.Controls.Add(b);
 
-            b.Click += (ss, ee) => 
+            b.Click += (ss, ee) =>
             {
                 this.fpAlive.Controls.Remove(p);
                 p.Dispose();
@@ -104,6 +116,39 @@ namespace DesktopDokies
             b.Click += doki.DokiCloseHandle;
 
             this.fpAlive.Controls.Add(p);
+        }
+
+        private void addDoki()
+        {
+            getSize();
+            Doki doki = GetDoki();
+            addDokiControlls(doki);
+        }
+
+        private void addDoki(Who who, int sSize)
+        {
+            Doki doki = null;
+            switch (who)
+            {
+                case Who.wSayori:
+                    doki = GetSayori(sSize);
+                    break;
+                case Who.wNatsuki:
+                    doki = GetNatsuki(sSize);
+                    break;
+                case Who.wYuri:
+                    doki = GetYuri(sSize);
+                    break;
+                case Who.wMonika:
+                    doki = GetMonika(sSize);
+                    break;
+            }
+            addDokiControlls(doki);
+        }
+
+        private void spawn_Click(object sender, EventArgs e)
+        {
+            addDoki();
         }
 
         private void loadRes()
@@ -157,19 +202,52 @@ namespace DesktopDokies
         {
             if (this.rSayori.Checked)
             {
-                return new Doki(Sayori_Res[0 + size*3], Sayori_Res[1 + size*3], Sayori_Res[2 + size*3], size);
+                return GetSayori(size);
             }
             else if (this.rNatsuki.Checked)
             {
-                return new Doki(Natsuki_Res[0 + size*3], Natsuki_Res[1 + size*3], Natsuki_Res[2 + size*3], size);
+                return GetNatsuki(size);
             }
             else if (this.rYuri.Checked)
             {
-                return new Doki(Yuri_Res[0 + size*3], Yuri_Res[1 + size*3], Yuri_Res[2 + size*3], size);
+                return GetYuri(size);
             }
             else
             {
-                return new Doki(Monika_Res[0 + size*3], Monika_Res[1 + size*3], Monika_Res[2 + size*3], size);
+                return GetMonika(size);
+            }
+        }
+
+        private Doki GetSayori(int sSize)
+        {
+            return new Doki(Sayori_Res[0 + sSize * 3], Sayori_Res[1 + sSize * 3], Sayori_Res[2 + sSize * 3], sSize);
+        }
+        private Doki GetNatsuki(int sSize)
+        {
+            return new Doki(Natsuki_Res[0 + sSize * 3], Natsuki_Res[1 + sSize * 3], Natsuki_Res[2 + sSize * 3], sSize);
+        }
+        private Doki GetYuri(int sSize)
+        {
+            return new Doki(Yuri_Res[0 + sSize * 3], Yuri_Res[1 + sSize * 3], Yuri_Res[2 + sSize * 3], sSize);
+        }
+        private Doki GetMonika(int sSize)
+        {
+            return new Doki(Monika_Res[0 + sSize * 3], Monika_Res[1 + sSize * 3], Monika_Res[2 + sSize * 3], sSize);
+        }
+
+        private void getSize()
+        {
+            if (this.rLarge.Checked)
+            {
+                size = 0;
+            }
+            else if (this.rMedium.Checked)
+            {
+                size = 1;
+            }
+            else
+            {
+                size = 2;
             }
         }
 
@@ -180,17 +258,14 @@ namespace DesktopDokies
             if(this.rLarge.Checked)
             {
                 text += "Large ";
-                size = 0;
             }
             else if (this.rMedium.Checked)
             {
                 text += "Medium ";
-                size = 1;
             }
             else
             {
                 text += "Small ";
-                size = 2;
             }
 
             if (this.rSayori.Checked)
