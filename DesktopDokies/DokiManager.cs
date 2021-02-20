@@ -27,7 +27,7 @@ namespace DesktopDokies
         List<Bitmap> Yuri_Res;
         List<Bitmap> Natsuki_Res;
         List<Bitmap> Sayori_Res;
-        int size;
+        //int size;
         Random Rand;
         Screen myScreen;
         Rectangle area;
@@ -125,22 +125,22 @@ namespace DesktopDokies
             addDokiControlls(doki);
         }
 
-        private void addDoki(Who who, int sSize)
+        private void addDoki(Who who, int size)
         {
             Doki doki = null;
             switch (who)
             {
                 case Who.wSayori:
-                    doki = GetSayori(sSize);
+                    doki = GetSayori(size);
                     break;
                 case Who.wNatsuki:
-                    doki = GetNatsuki(sSize);
+                    doki = GetNatsuki(size);
                     break;
                 case Who.wYuri:
-                    doki = GetYuri(sSize);
+                    doki = GetYuri(size);
                     break;
                 case Who.wMonika:
-                    doki = GetMonika(sSize);
+                    doki = GetMonika(size);
                     break;
             }
             addDokiControlls(doki);
@@ -202,52 +202,52 @@ namespace DesktopDokies
         {
             if (this.rSayori.Checked)
             {
-                return GetSayori(size);
+                return GetSayori(getSize());
             }
             else if (this.rNatsuki.Checked)
             {
-                return GetNatsuki(size);
+                return GetNatsuki(getSize());
             }
             else if (this.rYuri.Checked)
             {
-                return GetYuri(size);
+                return GetYuri(getSize());
             }
             else
             {
-                return GetMonika(size);
+                return GetMonika(getSize());
             }
         }
 
-        private Doki GetSayori(int sSize)
+        private Doki GetSayori(int size)
         {
-            return new Doki(Sayori_Res[0 + sSize * 3], Sayori_Res[1 + sSize * 3], Sayori_Res[2 + sSize * 3], sSize);
+            return new Doki(Sayori_Res[0 + size * 3], Sayori_Res[1 + size * 3], Sayori_Res[2 + size * 3], size);
         }
-        private Doki GetNatsuki(int sSize)
+        private Doki GetNatsuki(int size)
         {
-            return new Doki(Natsuki_Res[0 + sSize * 3], Natsuki_Res[1 + sSize * 3], Natsuki_Res[2 + sSize * 3], sSize);
+            return new Doki(Natsuki_Res[0 + size * 3], Natsuki_Res[1 + size * 3], Natsuki_Res[2 + size * 3], size);
         }
-        private Doki GetYuri(int sSize)
+        private Doki GetYuri(int size)
         {
-            return new Doki(Yuri_Res[0 + sSize * 3], Yuri_Res[1 + sSize * 3], Yuri_Res[2 + sSize * 3], sSize);
+            return new Doki(Yuri_Res[0 + size * 3], Yuri_Res[1 + size * 3], Yuri_Res[2 + size * 3], size);
         }
-        private Doki GetMonika(int sSize)
+        private Doki GetMonika(int size)
         {
-            return new Doki(Monika_Res[0 + sSize * 3], Monika_Res[1 + sSize * 3], Monika_Res[2 + sSize * 3], sSize);
+            return new Doki(Monika_Res[0 + size * 3], Monika_Res[1 + size * 3], Monika_Res[2 + size * 3], size);
         }
 
-        private void getSize()
+        private int getSize()
         {
             if (this.rLarge.Checked)
             {
-                size = 0;
+                return 0;
             }
             else if (this.rMedium.Checked)
             {
-                size = 1;
+                return 1;
             }
             else
             {
-                size = 2;
+                return 2;
             }
         }
 
