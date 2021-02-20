@@ -37,6 +37,11 @@ namespace DesktopDokies
         Random Rand;
         Screen myScreen;
         Rectangle area;
+
+        System.Windows.Forms.Timer rain = new System.Windows.Forms.Timer();
+        bool isRaining = false;
+        int lowerRainInterval = 500;
+        int higherRainInterval = 700;
         public DokiManager()
         {
             myScreen = Screen.FromControl(this);
@@ -53,6 +58,9 @@ namespace DesktopDokies
             //Thread.Sleep(5000);
             //testList[0].Close();
             this.bSpawn.Click += spawn_Click;
+            this.bRain.Click += rain_Click;
+            rain.Tick += new EventHandler(rain_Tick);
+            rain.Interval = Rand.Next(lowerRainInterval, higherRainInterval + 1);
             this.bAbout.Click += (ss, ee) =>
             {
                 About about = new About();
@@ -152,6 +160,46 @@ namespace DesktopDokies
             addDokiControlls(doki);
         }
 
+        private void rain_Click(object sender, EventArgs e)
+        {
+            if(!isRaining)
+            {
+                rain.Start();
+                isRaining = true;
+                this.bRain.Text = "Stop Rain";
+            }
+            else
+            {
+                rain.Stop();
+                isRaining = false;
+                this.bRain.Text = "Start Rain";
+            }
+        }
+
+        private void rain_Tick(object sender, EventArgs e)
+        {
+            Who next = (Who)Rand.Next(0, 4);
+            Doki doki = null;
+            switch (next)
+             {
+                case Who.wSayori:
+                    doki = GetSayori((int)DokiSize.Small, true);
+                    break;
+                case Who.wNatsuki:
+                    doki = GetNatsuki((int)DokiSize.Small, true);
+                    break;
+                case Who.wYuri:
+                    doki = GetYuri((int)DokiSize.Small, true);
+                    break;
+                case Who.wMonika:
+                    doki = GetMonika((int)DokiSize.Small, true);
+                    break;
+            }
+            doki.Location = new Point(Rand.Next(0, doki.rWall), -doki.Height - 5);
+            doki.Show();
+            rain.Interval = Rand.Next(lowerRainInterval, higherRainInterval + 1);
+        }
+
         private void spawn_Click(object sender, EventArgs e)
         {
             addDoki();
@@ -224,21 +272,21 @@ namespace DesktopDokies
             }
         }
 
-        private Doki GetSayori(int size)
+        private Doki GetSayori(int size, bool isRain = false)
         {
-            return new Doki(Sayori_Res[0 + size * 3], Sayori_Res[1 + size * 3], Sayori_Res[2 + size * 3], size);
+            return new Doki(Sayori_Res[0 + size * 3], Sayori_Res[1 + size * 3], Sayori_Res[2 + size * 3], size, isRain);
         }
-        private Doki GetNatsuki(int size)
+        private Doki GetNatsuki(int size, bool isRain = false)
         {
-            return new Doki(Natsuki_Res[0 + size * 3], Natsuki_Res[1 + size * 3], Natsuki_Res[2 + size * 3], size);
+            return new Doki(Natsuki_Res[0 + size * 3], Natsuki_Res[1 + size * 3], Natsuki_Res[2 + size * 3], size, isRain);
         }
-        private Doki GetYuri(int size)
+        private Doki GetYuri(int size, bool isRain = false)
         {
-            return new Doki(Yuri_Res[0 + size * 3], Yuri_Res[1 + size * 3], Yuri_Res[2 + size * 3], size);
+            return new Doki(Yuri_Res[0 + size * 3], Yuri_Res[1 + size * 3], Yuri_Res[2 + size * 3], size, isRain);
         }
-        private Doki GetMonika(int size)
+        private Doki GetMonika(int size, bool isRain = false)
         {
-            return new Doki(Monika_Res[0 + size * 3], Monika_Res[1 + size * 3], Monika_Res[2 + size * 3], size);
+            return new Doki(Monika_Res[0 + size * 3], Monika_Res[1 + size * 3], Monika_Res[2 + size * 3], size, isRain);
         }
 
         private int getSize()

@@ -41,7 +41,10 @@ namespace DesktopDokies
 
         private Timer Die = new Timer();
 
+        private Timer Rain = new Timer();
+
         public int floor;
+        public int rainFloor;
 
         public int rWall;
         public int lWall;
@@ -54,7 +57,7 @@ namespace DesktopDokies
         int dir = 0;
 
         //Size ranges from 0(Large) to 2(small)
-        public Doki(Bitmap S, Bitmap H, Bitmap D, int size)
+        public Doki(Bitmap S, Bitmap H, Bitmap D, int size, bool isRain = false)
         {
             //this.image.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
 
@@ -65,13 +68,13 @@ namespace DesktopDokies
             standing_Flip = (Bitmap)S.Clone();
             dead = (Bitmap)D.Clone();
 
-            walkHopMax += 2 * size + 1;
-            jumpSpeedMax += 2 * size + 1;
-            //jumpReduction 
-
-            walkHop = walkHopMax;
-            jumpSpeed = jumpSpeedMax;
-
+            Screen myScreen = Screen.FromControl(this);
+            Rectangle area = myScreen.WorkingArea;
+            setHappy();
+            floor = area.Height - this.image.Height + area.Y;
+            rainFloor = area.Height + this.image.Height * 2 + 5;
+            rWall = area.Width - this.image.Width + area.X;
+            lWall = area.X;
             happy_Flip.RotateFlip(RotateFlipType.RotateNoneFlipX);
             standing_Flip.RotateFlip(RotateFlipType.RotateNoneFlipX);
 
@@ -82,6 +85,7 @@ namespace DesktopDokies
                 Move.Dispose();
                 Walk.Dispose();
                 Die.Dispose();
+                Rain.Dispose();
                 happy.Dispose();
                 standing.Dispose();
                 happy_Flip.Dispose();
@@ -89,32 +93,48 @@ namespace DesktopDokies
                 dead.Dispose();
             };
 
-            falling = true;
-            this.image.MouseDown += image_MouseDown;
-            this.image.MouseMove += image_MouseMove;
-            this.image.MouseUp += image_MouseUp;
-            Fall.Tick += new EventHandler(Fall_Elapsed);
-            Fall.Interval = 15;
-
-            Jump.Tick += new EventHandler(Jump_Elapsed);
-            Jump.Interval = 10;
-
-            Walk.Tick += new EventHandler(Walk_Elapsed);
-            Walk.Interval = 10;
-
-            Move.Tick += new EventHandler(Move_Elapsed);
-            Move.Interval = rand.Next(750, 2751);
-
             Die.Tick += new EventHandler(Die_Elapsed);
             Die.Interval = 10;
-            
-            setHappy();
-            Screen myScreen = Screen.FromControl(this);
-            Rectangle area = myScreen.WorkingArea;
-            floor = area.Height - this.image.Height + area.Y;
-            rWall = area.Width - this.image.Width + area.X;
-            lWall = area.X;
-            Fall.Start();
+            if(!isRain)
+            {
+                walkHopMax += 2 * size + 1;
+                jumpSpeedMax += 2 * size + 1;
+                //jumpReduction 
+               
+                walkHop = walkHopMax;
+                jumpSpeed = jumpSpeedMax;
+               
+               
+               
+                falling = true;
+                this.image.MouseDown += image_MouseDown;
+                this.image.MouseMove += image_MouseMove;
+                this.image.MouseUp += image_MouseUp;
+                Fall.Tick += new EventHandler(Fall_Elapsed);
+                Fall.Interval = 15;
+               
+                Jump.Tick += new EventHandler(Jump_Elapsed);
+                Jump.Interval = 10;
+               
+                Walk.Tick += new EventHandler(Walk_Elapsed);
+                Walk.Interval = 10;
+               
+                Move.Tick += new EventHandler(Move_Elapsed);
+                Move.Interval = rand.Next(750, 2751);
+               
+                
+                //setHappy();
+                Fall.Start();
+            }
+            else
+            {
+                acc /= 8;
+                if (rand.Next(0, 2) == 0) Flip();
+                //setHappy();
+                Rain.Tick += new EventHandler(Rain_Elapsed);
+                Rain.Interval = 15;
+                Rain.Start();
+            }
 
         }
 
@@ -133,6 +153,7 @@ namespace DesktopDokies
             Fall.Enabled = false;
             Jump.Enabled = false;
             Move.Enabled = false;
+            Rain.Enabled = false;
 
 
             /*for (int i = 0; i < 100; i++)
@@ -151,6 +172,24 @@ namespace DesktopDokies
         private bool mouseDown;
         private Point lastLocation;
         private int lastX;
+
+        private void Rain_Elapsed(object sender, EventArgs e)
+        {
+            if (this.Location.Y < rainFloor)
+            {
+                this.Location = new Point(this.Location.X, this.Location.Y + (int)Math.Floor(speed));
+                speed += acc;
+                this.Update();
+            }
+            if (this.Location.Y >= rainFloor)
+            {
+                this.Location = new Point(this.Location.X, rainFloor);
+                this.Update();
+                falling = false;
+                speed = 0;
+                DokiClose();
+            }
+        }
 
         private void Die_Elapsed(object sender, EventArgs e)
         {
