@@ -93,17 +93,24 @@ namespace DesktopDokies
                 notifyIcon1.Visible = false;
             };
             
-            addDoki(Who.wSayori, (int)DokiSize.Medium);
-            addDoki(Who.wNatsuki, (int)DokiSize.Medium);
-            addDoki(Who.wYuri, (int)DokiSize.Medium);
-            addDoki(Who.wMonika, (int)DokiSize.Medium);
+            addDoki(Who.wSayori, (int)DokiSize.Medium, "Medium Sayori");
+            addDoki(Who.wNatsuki, (int)DokiSize.Medium, "Medium Natsuki");
+            addDoki(Who.wYuri, (int)DokiSize.Medium, "Medium Yuri");
+            addDoki(Who.wMonika, (int)DokiSize.Medium, "Medium Monika");
         }
 
-        private void addDokiControlls(Doki doki)
+        private void addDokiControlls(Doki doki, string tText = "")
         {
             //Doki doki;//= new Doki();
             Label t = new Label();
-            t.Text = getText();
+            if(string.IsNullOrEmpty(tText))
+            { 
+                t.Text = getText();
+            }
+            else
+            {
+                t.Text = tText;
+            }
             //getSize();
             //doki = GetDoki();
             //doki.StartPosition = FormStartPosition.Manual;
@@ -139,7 +146,7 @@ namespace DesktopDokies
             addDokiControlls(doki);
         }
 
-        private void addDoki(Who who, int size)
+        private void addDoki(Who who, int size, string tText)
         {
             Doki doki = null;
             switch (who)
@@ -157,7 +164,7 @@ namespace DesktopDokies
                     doki = GetMonika(size);
                     break;
             }
-            addDokiControlls(doki);
+            addDokiControlls(doki, tText);
         }
 
         private void rain_Click(object sender, EventArgs e)
