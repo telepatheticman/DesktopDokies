@@ -130,7 +130,8 @@ namespace DesktopDokies
             {
                 acc /= 8;
                 if (rand.Next(0, 2) == 0) Flip();
-                //setHappy();
+                setHappy();
+                this.Update();
                 Rain.Tick += new EventHandler(Rain_Elapsed);
                 Rain.Interval = 15;
                 Rain.Start();
