@@ -349,6 +349,7 @@
             this.cSmall.AutoSize = true;
             this.cSmall.Checked = true;
             this.cSmall.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cSmall.Enabled = false;
             this.cSmall.Location = new System.Drawing.Point(7, 20);
             this.cSmall.Name = "cSmall";
             this.cSmall.Size = new System.Drawing.Size(51, 17);

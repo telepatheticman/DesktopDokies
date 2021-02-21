@@ -31,6 +31,16 @@ namespace DesktopDokies
         bool justMonika = false;
         int lowerRainInterval = 500;
         int higherRainInterval = 700;
+
+        int rainDokiesSelected = 4;
+        int rainSayoriSelected = 1;
+        int rainNatsukiSelected = 1;
+        int rainYuriSelected = 1;
+        int rainMonikaSelected = 1;
+
+
+
+
         public DokiManager()
         {
             myScreen = Screen.FromControl(this);
@@ -43,6 +53,29 @@ namespace DesktopDokies
             loadRes();
 
             Dokies = new List<Doki>();
+
+            initCheck(this.cSayori, this.cNatsuki, this.cYuri, this.cMonika);
+            initCheck(this.cNatsuki, this.cYuri, this.cMonika, this.cSayori);
+            initCheck(this.cYuri, this.cMonika,this.cSayori, this.cNatsuki);
+            initCheck(this.cMonika, this.cSayori, this.cNatsuki, this.cYuri);
+
+            initCheck(this.cSmall, this.cMedium, this.cLarge);
+            initCheck(this.cMedium, this.cLarge, this.cSmall);
+            initCheck(this.cLarge, this.cSmall, this.cMedium);
+
+
+            /*this.cSayori.Click += (ss, ee) =>
+            {
+                if(this.cSayori.Enabled)
+                {
+                    rainSayoriSelected *= -1;
+                    rainDokiesSelected += rainSayoriSelected;
+                }
+                if(rainDokiesSelected == 1)
+                {
+                    if (this.cNatsuki.Checked) { this.cNatsuki.Enabled = false; };
+                }
+            };*/
 
             this.bSpawn.Click += spawn_Click;
             this.bRain.Click += rain_Click;
@@ -113,6 +146,41 @@ namespace DesktopDokies
             addDoki(Who.wNatsuki, (int)DokiSize.Medium, "Medium Natsuki");
             addDoki(Who.wYuri, (int)DokiSize.Medium, "Medium Yuri");
             addDoki(Who.wMonika, (int)DokiSize.Medium, "Medium Monika");
+        }
+
+        private void initCheck(CheckBox main, params CheckBox[] group)
+        {
+            main.Click += (ss, ee) =>
+            {
+                int total = 0;
+                if (main.Checked) total++;
+                foreach (CheckBox checkBox in group)
+                {
+                    if (checkBox.Checked) total++;
+                }
+                if (total == 1)
+                {
+                    if (main.Checked)
+                    {
+                        main.Enabled = false;
+                    }
+                    else
+                    {
+                        foreach (CheckBox checkBox in group)
+                        {
+                            if (checkBox.Checked) checkBox.Enabled = false;
+                        }
+                    }
+                }
+                else
+                {
+                    main.Enabled = true;
+                    foreach (CheckBox checkBox in group)
+                    {
+                        checkBox.Enabled = true;
+                    }
+                }
+            };
         }
 
         private void removeAll()
