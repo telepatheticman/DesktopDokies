@@ -11,6 +11,21 @@ using System.Windows.Forms;
 
 namespace DesktopDokies
 {
+    public enum Who
+    {
+        wSayori = 0,
+        wNatsuki = 1,
+        wYuri = 2,
+        wMonika = 3
+    }
+
+    public enum DokiSize
+    {
+        Small = 2,
+        Medium = 1,
+        Large = 0
+    }
+
     public partial class Doki : Form
     {
         Random rand = new Random();
@@ -19,7 +34,10 @@ namespace DesktopDokies
         Bitmap standing;// = Properties.Resources.M_Standing;
         Bitmap happy_Flip;// = Properties.Resources.M_Happy;
         Bitmap standing_Flip;// = Properties.Resources.M_Standing;
-        Bitmap dead;
+        Bitmap dead;// = Properties.Resources.M_Dead;
+
+        public Who who;
+        public DokiSize dokiSize;
 
         public bool falling = true;
         private Timer Fall = new Timer();
@@ -57,7 +75,7 @@ namespace DesktopDokies
         int dir = 0;
 
         //Size ranges from 0(Large) to 2(small)
-        public Doki(Bitmap S, Bitmap H, Bitmap D, int size, bool isRain = false)
+        public Doki(Bitmap S, Bitmap H, Bitmap D, DokiSize size, Who dokiWho, bool isRain = false)
         {
             //this.image.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
 
@@ -67,6 +85,8 @@ namespace DesktopDokies
             standing = (Bitmap)S.Clone();
             standing_Flip = (Bitmap)S.Clone();
             dead = (Bitmap)D.Clone();
+
+            who = dokiWho;
 
             Screen myScreen = Screen.FromControl(this);
             Rectangle area = myScreen.WorkingArea;
@@ -97,8 +117,8 @@ namespace DesktopDokies
             Die.Interval = 10;
             if(!isRain)
             {
-                walkHopMax += 2 * size + 1;
-                jumpSpeedMax += 2 * size + 1;
+                walkHopMax += 2 * (int)size + 1;
+                jumpSpeedMax += 2 * (int)size + 1;
                 //jumpReduction 
                
                 walkHop = walkHopMax;

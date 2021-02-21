@@ -12,20 +12,7 @@ using System.Windows.Forms;
 
 namespace DesktopDokies
 {
-    enum Who
-    {
-        wSayori = 0,
-        wNatsuki = 1,
-        wYuri = 2,
-        wMonika =3
-    }
 
-    enum DokiSize
-    {
-        Small = 2,
-        Medium = 1,
-        Large = 0
-    }
     public partial class DokiManager : Form
     {
         //Dictionary<Doki, > dokies;
@@ -34,6 +21,7 @@ namespace DesktopDokies
         List<Bitmap> Yuri_Res;
         List<Bitmap> Natsuki_Res;
         List<Bitmap> Sayori_Res;
+        List<Doki> Dokies;
         Random Rand;
         Screen myScreen;
         Rectangle area;
@@ -53,11 +41,9 @@ namespace DesktopDokies
             InitializeComponent();
 
             loadRes();
-            //testList = new List<Doki>();
-            //testList.Add(new Doki());
-            //testList[0].Show();
-            //Thread.Sleep(5000);
-            //testList[0].Close();
+
+            Dokies = new List<Doki>();
+
             this.bSpawn.Click += spawn_Click;
             this.bRain.Click += rain_Click;
             rain.Tick += new EventHandler(rain_Tick);
@@ -102,10 +88,17 @@ namespace DesktopDokies
 
         private void removeAll()
         {
-            foreach(var cont in this.fpAlive.Controls)
+            //Likly unsafe. Not necisarily garentied to be a FlowLayoutPanel. But it is for now. 
+            foreach(FlowLayoutPanel cont in this.fpAlive.Controls)
             {
-                
+                cont.Dispose();
             }
+            this.fpAlive.Controls.Clear();
+            foreach(Doki doki in Dokies)
+            {
+                doki.Dispose();
+            }
+            Dokies.Clear();
         }
 
         private void addDokiControlls(Doki doki, string tText = "")
@@ -148,6 +141,9 @@ namespace DesktopDokies
             };
 
             b.Click += doki.DokiCloseHandle;
+            //Doesnt work twice
+            //this.bKillAll.Click += doki.DokiCloseHandle;
+            //this.bKillAll.Click += (ss, ee) => { p.Dispose(); };
 
             this.fpAlive.Controls.Add(p);
         }
@@ -294,19 +290,19 @@ namespace DesktopDokies
 
         private Doki GetSayori(int size, bool isRain = false)
         {
-            return new Doki(Sayori_Res[0 + size * 3], Sayori_Res[1 + size * 3], Sayori_Res[2 + size * 3], size, isRain);
+            return new Doki(Sayori_Res[0 + size * 3], Sayori_Res[1 + size * 3], Sayori_Res[2 + size * 3], (DokiSize)size, Who.wSayori, isRain);
         }
         private Doki GetNatsuki(int size, bool isRain = false)
         {
-            return new Doki(Natsuki_Res[0 + size * 3], Natsuki_Res[1 + size * 3], Natsuki_Res[2 + size * 3], size, isRain);
+            return new Doki(Natsuki_Res[0 + size * 3], Natsuki_Res[1 + size * 3], Natsuki_Res[2 + size * 3], (DokiSize)size, Who.wNatsuki, isRain);
         }
         private Doki GetYuri(int size, bool isRain = false)
         {
-            return new Doki(Yuri_Res[0 + size * 3], Yuri_Res[1 + size * 3], Yuri_Res[2 + size * 3], size, isRain);
+            return new Doki(Yuri_Res[0 + size * 3], Yuri_Res[1 + size * 3], Yuri_Res[2 + size * 3], (DokiSize)size, Who.wYuri, isRain);
         }
         private Doki GetMonika(int size, bool isRain = false)
         {
-            return new Doki(Monika_Res[0 + size * 3], Monika_Res[1 + size * 3], Monika_Res[2 + size * 3], size, isRain);
+            return new Doki(Monika_Res[0 + size * 3], Monika_Res[1 + size * 3], Monika_Res[2 + size * 3], (DokiSize)size, Who.wMonika, isRain);
         }
 
         private int getSize()
