@@ -158,6 +158,11 @@ namespace DesktopDokies
                 applySettings();
             };
 
+            this.bMonika.Click += (ss, ee) =>
+            {
+                applyJustMonika();
+            };
+
             lowerRainInterval = (16 - rainFreq) * 70;
             higherRainInterval = (16 - rainFreq) * 100;
 
@@ -165,6 +170,30 @@ namespace DesktopDokies
             addDoki(Who.wNatsuki, (int)DokiSize.Medium, "Medium Natsuki");
             addDoki(Who.wYuri, (int)DokiSize.Medium, "Medium Yuri");
             addDoki(Who.wMonika, (int)DokiSize.Medium, "Medium Monika");
+        }
+
+        private void applyJustMonika()
+        {
+            justMonika = true;
+            this.bMonika.Enabled = false;
+            this.bMonika.Visible = false;
+
+            rain.Enabled = false;
+            isRaining = false;
+            this.bRain.Text = "Start Rain";
+
+            this.bKillAll.Enabled = false;
+
+            this.bSpawn.Text = "Monika";
+            this.rSayori.Text = "Monika";
+            this.cSayori.Text = "Monika";
+            this.rNatsuki.Text = "Monika";
+            this.cNatsuki.Text = "Monika";
+            this.rYuri.Text = "Monika";
+            this.cYuri.Text = "Monika";
+
+            removeAll();
+            addDoki(Who.wMonika, (int)DokiSize.Medium, "Just Monika");
         }
 
         private void resetSettings()
@@ -293,6 +322,7 @@ namespace DesktopDokies
 
             Button b = new Button();
             b.Text = "Kill";
+            if (justMonika) b.Enabled = false;
             p.Controls.Add(b);
 
             p.Disposed += (ss, ee) =>
@@ -364,11 +394,17 @@ namespace DesktopDokies
             for (int i = 0; i < rainAmount; i++)
             {
                 int nextInt = Rand.Next(0, rainDokiesSelected);
-                if (nextInt == 0 && !rainSayori) nextInt++;
-                if (nextInt == 1 && !rainNatsuki) nextInt++;
-                if (nextInt == 2 && !rainYuri) nextInt++;
-
                 int nextSizeInt = Rand.Next(0, rainSizeCount);
+                if (!justMonika)
+                {
+                    if (nextInt == 0 && !rainSayori) nextInt++;
+                    if (nextInt == 1 && !rainNatsuki) nextInt++;
+                    if (nextInt == 2 && !rainYuri) nextInt++;
+                }
+                else
+                {
+                    nextInt = (int)Who.wMonika;
+                }
                 if (nextSizeInt == 0 && !rainLarge) nextSizeInt++;
                 if (nextSizeInt == 1 && !rainMedium) nextSizeInt++;
 
@@ -398,7 +434,8 @@ namespace DesktopDokies
 
         private void spawn_Click(object sender, EventArgs e)
         {
-            addDoki();
+            if(!justMonika) addDoki();
+            if(justMonika) addDoki(Who.wMonika, getSize(), "Just Monika");
         }
 
         private void loadRes()
