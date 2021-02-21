@@ -356,25 +356,38 @@ namespace DesktopDokies
 
         private void rain_Tick(object sender, EventArgs e)
         {
-            Who next = (Who)Rand.Next(0, 4);
-            Doki doki = null;
-            switch (next)
-             {
-                case Who.wSayori:
-                    doki = GetSayori((int)DokiSize.Small, true);
-                    break;
-                case Who.wNatsuki:
-                    doki = GetNatsuki((int)DokiSize.Small, true);
-                    break;
-                case Who.wYuri:
-                    doki = GetYuri((int)DokiSize.Small, true);
-                    break;
-                case Who.wMonika:
-                    doki = GetMonika((int)DokiSize.Small, true);
-                    break;
+            for (int i = 0; i < rainAmount; i++)
+            {
+                int nextInt = Rand.Next(0, rainDokiesSelected);
+                if (nextInt == 0 && !rainSayori) nextInt++;
+                if (nextInt == 1 && !rainNatsuki) nextInt++;
+                if (nextInt == 2 && !rainYuri) nextInt++;
+
+                int nextSizeInt = Rand.Next(0, rainSizeCount);
+                if (nextSizeInt == 0 && !rainLarge) nextSizeInt++;
+                if (nextSizeInt == 1 && !rainMedium) nextSizeInt++;
+
+                Who next = (Who)nextInt;
+                DokiSize nextSize = (DokiSize)nextSizeInt;
+                Doki doki = null;
+                switch (next)
+                {
+                    case Who.wSayori:
+                        doki = GetSayori((int)nextSize, true);
+                        break;
+                    case Who.wNatsuki:
+                        doki = GetNatsuki((int)nextSize, true);
+                        break;
+                    case Who.wYuri:
+                        doki = GetYuri((int)nextSize, true);
+                        break;
+                    case Who.wMonika:
+                        doki = GetMonika((int)nextSize, true);
+                        break;
+                }
+                doki.Location = new Point(Rand.Next(0, doki.rWall), -doki.Height - 5);
+                doki.Show();
             }
-            doki.Location = new Point(Rand.Next(0, doki.rWall), -doki.Height - 5);
-            doki.Show();
             rain.Interval = Rand.Next(lowerRainInterval, higherRainInterval + 1);
         }
 
