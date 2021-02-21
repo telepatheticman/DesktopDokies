@@ -40,6 +40,7 @@ namespace DesktopDokies
 
         System.Windows.Forms.Timer rain = new System.Windows.Forms.Timer();
         bool isRaining = false;
+        bool justMonika = false;
         int lowerRainInterval = 500;
         int higherRainInterval = 700;
         public DokiManager()
@@ -99,6 +100,14 @@ namespace DesktopDokies
             addDoki(Who.wMonika, (int)DokiSize.Medium, "Medium Monika");
         }
 
+        private void removeAll()
+        {
+            foreach(var cont in this.fpAlive.Controls)
+            {
+                
+            }
+        }
+
         private void addDokiControlls(Doki doki, string tText = "")
         {
             //Doki doki;//= new Doki();
@@ -126,12 +135,16 @@ namespace DesktopDokies
             b.Text = "Kill";
             p.Controls.Add(b);
 
-            b.Click += (ss, ee) =>
+            p.Disposed += (ss, ee) =>
             {
                 this.fpAlive.Controls.Remove(p);
-                p.Dispose();
                 t.Dispose();
                 b.Dispose();
+            };
+
+            b.Click += (ss, ee) =>
+            {
+                p.Dispose();
             };
 
             b.Click += doki.DokiCloseHandle;
