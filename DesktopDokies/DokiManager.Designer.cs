@@ -49,24 +49,24 @@
             this.gSettings = new System.Windows.Forms.GroupBox();
             this.fpSettings = new System.Windows.Forms.FlowLayoutPanel();
             this.gDoki = new System.Windows.Forms.GroupBox();
-            this.cSayori = new System.Windows.Forms.CheckBox();
-            this.cMonika = new System.Windows.Forms.CheckBox();
-            this.cYuri = new System.Windows.Forms.CheckBox();
             this.cNatsuki = new System.Windows.Forms.CheckBox();
+            this.cYuri = new System.Windows.Forms.CheckBox();
+            this.cMonika = new System.Windows.Forms.CheckBox();
+            this.cSayori = new System.Windows.Forms.CheckBox();
             this.gDokiSize = new System.Windows.Forms.GroupBox();
-            this.cSmall = new System.Windows.Forms.CheckBox();
-            this.cMedium = new System.Windows.Forms.CheckBox();
             this.cLarge = new System.Windows.Forms.CheckBox();
+            this.cMedium = new System.Windows.Forms.CheckBox();
+            this.cSmall = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tFreq = new System.Windows.Forms.TrackBar();
             this.nFreq = new System.Windows.Forms.NumericUpDown();
+            this.tFreq = new System.Windows.Forms.TrackBar();
             this.gAmount = new System.Windows.Forms.GroupBox();
-            this.tAmount = new System.Windows.Forms.TrackBar();
             this.nAmount = new System.Windows.Forms.NumericUpDown();
-            this.bMonika = new System.Windows.Forms.Button();
+            this.tAmount = new System.Windows.Forms.TrackBar();
             this.fpSettingButtons = new System.Windows.Forms.FlowLayoutPanel();
             this.bApply = new System.Windows.Forms.Button();
             this.bReset = new System.Windows.Forms.Button();
+            this.bMonika = new System.Windows.Forms.Button();
             this.bKillAll = new System.Windows.Forms.Button();
             this.gCharacter.SuspendLayout();
             this.gSize.SuspendLayout();
@@ -76,11 +76,11 @@
             this.gDoki.SuspendLayout();
             this.gDokiSize.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tFreq)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nFreq)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tFreq)).BeginInit();
             this.gAmount.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nAmount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tAmount)).BeginInit();
             this.fpSettingButtons.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -284,29 +284,17 @@
             this.gDoki.TabStop = false;
             this.gDoki.Text = "Dokis To Rain";
             // 
-            // cSayori
+            // cNatsuki
             // 
-            this.cSayori.AutoSize = true;
-            this.cSayori.Checked = true;
-            this.cSayori.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cSayori.Location = new System.Drawing.Point(7, 20);
-            this.cSayori.Name = "cSayori";
-            this.cSayori.Size = new System.Drawing.Size(55, 17);
-            this.cSayori.TabIndex = 0;
-            this.cSayori.Text = "Sayori";
-            this.cSayori.UseVisualStyleBackColor = true;
-            // 
-            // cMonika
-            // 
-            this.cMonika.AutoSize = true;
-            this.cMonika.Checked = true;
-            this.cMonika.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cMonika.Location = new System.Drawing.Point(96, 20);
-            this.cMonika.Name = "cMonika";
-            this.cMonika.Size = new System.Drawing.Size(61, 17);
-            this.cMonika.TabIndex = 1;
-            this.cMonika.Text = "Monika";
-            this.cMonika.UseVisualStyleBackColor = true;
+            this.cNatsuki.AutoSize = true;
+            this.cNatsuki.Checked = true;
+            this.cNatsuki.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cNatsuki.Location = new System.Drawing.Point(95, 48);
+            this.cNatsuki.Name = "cNatsuki";
+            this.cNatsuki.Size = new System.Drawing.Size(62, 17);
+            this.cNatsuki.TabIndex = 3;
+            this.cNatsuki.Text = "Natsuki";
+            this.cNatsuki.UseVisualStyleBackColor = true;
             // 
             // cYuri
             // 
@@ -320,17 +308,29 @@
             this.cYuri.Text = "Yuri";
             this.cYuri.UseVisualStyleBackColor = true;
             // 
-            // cNatsuki
+            // cMonika
             // 
-            this.cNatsuki.AutoSize = true;
-            this.cNatsuki.Checked = true;
-            this.cNatsuki.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cNatsuki.Location = new System.Drawing.Point(95, 48);
-            this.cNatsuki.Name = "cNatsuki";
-            this.cNatsuki.Size = new System.Drawing.Size(62, 17);
-            this.cNatsuki.TabIndex = 3;
-            this.cNatsuki.Text = "Natsuki";
-            this.cNatsuki.UseVisualStyleBackColor = true;
+            this.cMonika.AutoSize = true;
+            this.cMonika.Checked = true;
+            this.cMonika.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cMonika.Location = new System.Drawing.Point(96, 20);
+            this.cMonika.Name = "cMonika";
+            this.cMonika.Size = new System.Drawing.Size(61, 17);
+            this.cMonika.TabIndex = 1;
+            this.cMonika.Text = "Monika";
+            this.cMonika.UseVisualStyleBackColor = true;
+            // 
+            // cSayori
+            // 
+            this.cSayori.AutoSize = true;
+            this.cSayori.Checked = true;
+            this.cSayori.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cSayori.Location = new System.Drawing.Point(7, 20);
+            this.cSayori.Name = "cSayori";
+            this.cSayori.Size = new System.Drawing.Size(55, 17);
+            this.cSayori.TabIndex = 0;
+            this.cSayori.Text = "Sayori";
+            this.cSayori.UseVisualStyleBackColor = true;
             // 
             // gDokiSize
             // 
@@ -343,6 +343,26 @@
             this.gDokiSize.TabIndex = 1;
             this.gDokiSize.TabStop = false;
             this.gDokiSize.Text = "Doki Size To Rain";
+            // 
+            // cLarge
+            // 
+            this.cLarge.AutoSize = true;
+            this.cLarge.Location = new System.Drawing.Point(48, 43);
+            this.cLarge.Name = "cLarge";
+            this.cLarge.Size = new System.Drawing.Size(53, 17);
+            this.cLarge.TabIndex = 2;
+            this.cLarge.Text = "Large";
+            this.cLarge.UseVisualStyleBackColor = true;
+            // 
+            // cMedium
+            // 
+            this.cMedium.AutoSize = true;
+            this.cMedium.Location = new System.Drawing.Point(94, 20);
+            this.cMedium.Name = "cMedium";
+            this.cMedium.Size = new System.Drawing.Size(63, 17);
+            this.cMedium.TabIndex = 1;
+            this.cMedium.Text = "Medium";
+            this.cMedium.UseVisualStyleBackColor = true;
             // 
             // cSmall
             // 
@@ -357,26 +377,6 @@
             this.cSmall.Text = "Small";
             this.cSmall.UseVisualStyleBackColor = true;
             // 
-            // cMedium
-            // 
-            this.cMedium.AutoSize = true;
-            this.cMedium.Location = new System.Drawing.Point(94, 20);
-            this.cMedium.Name = "cMedium";
-            this.cMedium.Size = new System.Drawing.Size(63, 17);
-            this.cMedium.TabIndex = 1;
-            this.cMedium.Text = "Medium";
-            this.cMedium.UseVisualStyleBackColor = true;
-            // 
-            // cLarge
-            // 
-            this.cLarge.AutoSize = true;
-            this.cLarge.Location = new System.Drawing.Point(48, 43);
-            this.cLarge.Name = "cLarge";
-            this.cLarge.Size = new System.Drawing.Size(53, 17);
-            this.cLarge.TabIndex = 2;
-            this.cLarge.Text = "Large";
-            this.cLarge.UseVisualStyleBackColor = true;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.nFreq);
@@ -387,16 +387,6 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Rain Frequency";
-            // 
-            // tFreq
-            // 
-            this.tFreq.Location = new System.Drawing.Point(6, 19);
-            this.tFreq.Maximum = 15;
-            this.tFreq.Minimum = 1;
-            this.tFreq.Name = "tFreq";
-            this.tFreq.Size = new System.Drawing.Size(104, 45);
-            this.tFreq.TabIndex = 0;
-            this.tFreq.Value = 1;
             // 
             // nFreq
             // 
@@ -415,10 +405,20 @@
             this.nFreq.Size = new System.Drawing.Size(40, 20);
             this.nFreq.TabIndex = 1;
             this.nFreq.Value = new decimal(new int[] {
-            1,
+            7,
             0,
             0,
             0});
+            // 
+            // tFreq
+            // 
+            this.tFreq.Location = new System.Drawing.Point(6, 19);
+            this.tFreq.Maximum = 15;
+            this.tFreq.Minimum = 1;
+            this.tFreq.Name = "tFreq";
+            this.tFreq.Size = new System.Drawing.Size(104, 45);
+            this.tFreq.TabIndex = 0;
+            this.tFreq.Value = 7;
             // 
             // gAmount
             // 
@@ -430,15 +430,6 @@
             this.gAmount.TabIndex = 3;
             this.gAmount.TabStop = false;
             this.gAmount.Text = "Rain Amount";
-            // 
-            // tAmount
-            // 
-            this.tAmount.Location = new System.Drawing.Point(7, 19);
-            this.tAmount.Minimum = 1;
-            this.tAmount.Name = "tAmount";
-            this.tAmount.Size = new System.Drawing.Size(104, 45);
-            this.tAmount.TabIndex = 1;
-            this.tAmount.Value = 1;
             // 
             // nAmount
             // 
@@ -462,14 +453,14 @@
             0,
             0});
             // 
-            // bMonika
+            // tAmount
             // 
-            this.bMonika.Location = new System.Drawing.Point(600, 457);
-            this.bMonika.Name = "bMonika";
-            this.bMonika.Size = new System.Drawing.Size(94, 28);
-            this.bMonika.TabIndex = 8;
-            this.bMonika.Text = "Just Monika";
-            this.bMonika.UseVisualStyleBackColor = true;
+            this.tAmount.Location = new System.Drawing.Point(7, 19);
+            this.tAmount.Minimum = 1;
+            this.tAmount.Name = "tAmount";
+            this.tAmount.Size = new System.Drawing.Size(104, 45);
+            this.tAmount.TabIndex = 1;
+            this.tAmount.Value = 1;
             // 
             // fpSettingButtons
             // 
@@ -498,6 +489,15 @@
             this.bReset.TabIndex = 1;
             this.bReset.Text = "Reset";
             this.bReset.UseVisualStyleBackColor = true;
+            // 
+            // bMonika
+            // 
+            this.bMonika.Location = new System.Drawing.Point(600, 457);
+            this.bMonika.Name = "bMonika";
+            this.bMonika.Size = new System.Drawing.Size(94, 28);
+            this.bMonika.TabIndex = 8;
+            this.bMonika.Text = "Just Monika";
+            this.bMonika.UseVisualStyleBackColor = true;
             // 
             // bKillAll
             // 
@@ -541,12 +541,12 @@
             this.gDokiSize.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tFreq)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nFreq)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tFreq)).EndInit();
             this.gAmount.ResumeLayout(false);
             this.gAmount.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nAmount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tAmount)).EndInit();
             this.fpSettingButtons.ResumeLayout(false);
             this.ResumeLayout(false);
 

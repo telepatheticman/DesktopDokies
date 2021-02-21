@@ -43,7 +43,7 @@ namespace DesktopDokies
         bool rainMedium = false;
         bool rainLarge = false;
 
-        int rainFreq = 1;
+        int rainFreq = 7;
         int rainAmount = 1;
 
         public DokiManager()
@@ -158,6 +158,9 @@ namespace DesktopDokies
                 applySettings();
             };
 
+            lowerRainInterval = (16 - rainFreq) * 70;
+            higherRainInterval = (16 - rainFreq) * 100;
+
             addDoki(Who.wSayori, (int)DokiSize.Medium, "Medium Sayori");
             addDoki(Who.wNatsuki, (int)DokiSize.Medium, "Medium Natsuki");
             addDoki(Who.wYuri, (int)DokiSize.Medium, "Medium Yuri");
@@ -210,6 +213,8 @@ namespace DesktopDokies
 
             rainFreq = (int)this.nFreq.Value;
             rainAmount = (int)this.nAmount.Value;
+            lowerRainInterval = (16 - rainFreq) * 70;
+            higherRainInterval = (16 - rainFreq) * 100;
         }
 
         private void initCheck(CheckBox main, params CheckBox[] group)
