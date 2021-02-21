@@ -83,7 +83,32 @@ namespace DesktopDokies
             {
                 removeAll();
             };
-            
+
+            this.bMonika.Click += (ss, ee) =>
+            {
+                justMonika = true;
+            };
+
+            this.tFreq.ValueChanged += (ss, ee) =>
+            {
+                this.nFreq.Value = this.tFreq.Value;
+            };
+
+            this.nFreq.ValueChanged += (ss, ee) =>
+            {
+                this.tFreq.Value = (int)this.nFreq.Value;
+            };
+
+            this.tAmount.ValueChanged += (ss, ee) =>
+            {
+                this.nAmount.Value = this.tAmount.Value;
+            };
+
+            this.nAmount.ValueChanged += (ss, ee) =>
+            {
+                this.tAmount.Value = (int)this.nAmount.Value;
+            };
+
             addDoki(Who.wSayori, (int)DokiSize.Medium, "Medium Sayori");
             addDoki(Who.wNatsuki, (int)DokiSize.Medium, "Medium Natsuki");
             addDoki(Who.wYuri, (int)DokiSize.Medium, "Medium Yuri");
