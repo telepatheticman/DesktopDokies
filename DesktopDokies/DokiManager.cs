@@ -33,13 +33,18 @@ namespace DesktopDokies
         int higherRainInterval = 700;
 
         int rainDokiesSelected = 4;
-        int rainSayoriSelected = 1;
-        int rainNatsukiSelected = 1;
-        int rainYuriSelected = 1;
-        int rainMonikaSelected = 1;
+        bool rainSayori = true;
+        bool rainNatsuki = true;
+        bool rainYuri = true;
+        bool rainMonika = true;
 
+        int rainSizeCount = 1;
+        bool rainSmall = true;
+        bool rainMedium = false;
+        bool rainLarge = false;
 
-
+        int rainFreq = 1;
+        int rainAmount = 1;
 
         public DokiManager()
         {
@@ -142,10 +147,69 @@ namespace DesktopDokies
                 this.tAmount.Value = (int)this.nAmount.Value;
             };
 
+            this.bApply.Click += (ss, ee) =>
+            {
+                applySettings();
+            };
+
+            this.bReset.Click += (ss, ee) =>
+            {
+                resetSettings();
+                applySettings();
+            };
+
             addDoki(Who.wSayori, (int)DokiSize.Medium, "Medium Sayori");
             addDoki(Who.wNatsuki, (int)DokiSize.Medium, "Medium Natsuki");
             addDoki(Who.wYuri, (int)DokiSize.Medium, "Medium Yuri");
             addDoki(Who.wMonika, (int)DokiSize.Medium, "Medium Monika");
+        }
+
+        private void resetSettings()
+        {
+            this.cSayori.Checked = true;
+            this.cSayori.Enabled = true;
+            this.cNatsuki.Checked = true;
+            this.cNatsuki.Enabled = true;
+            this.cYuri.Checked = true;
+            this.cYuri.Enabled = true;
+            this.cMonika.Checked = true;
+            this.cMonika.Enabled = true;
+
+            this.cSmall.Checked = true;
+            this.cSmall.Enabled = false;
+            this.cMedium.Checked = false;
+            this.cMedium.Enabled = true;
+            this.cLarge.Checked = false;
+            this.cLarge.Enabled = true;
+
+            this.tFreq.Value = 1;
+            this.tAmount.Value = 1;
+        }
+
+        private void applySettings()
+        {
+            int dokiTotal = 0;
+            rainSayori = this.cSayori.Checked;
+            if (rainSayori) dokiTotal++;
+            rainNatsuki = this.cNatsuki.Checked;
+            if (rainNatsuki) dokiTotal++;
+            rainYuri = this.cYuri.Checked;
+            if (rainYuri) dokiTotal++;
+            rainMonika = this.cMonika.Checked;
+            if (rainMonika) dokiTotal++;
+            rainDokiesSelected = dokiTotal;
+
+            int sizeTotal = 0;
+            rainSmall = this.cSmall.Checked;
+            if (rainSmall) sizeTotal++;
+            rainMedium = this.cMedium.Checked;
+            if (rainMedium) sizeTotal++;
+            rainLarge = this.cLarge.Checked;
+            if (rainLarge) sizeTotal++;
+            rainSizeCount = sizeTotal;
+
+            rainFreq = (int)this.nFreq.Value;
+            rainAmount = (int)this.nAmount.Value;
         }
 
         private void initCheck(CheckBox main, params CheckBox[] group)
