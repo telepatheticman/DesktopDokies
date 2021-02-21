@@ -5,7 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-//using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -77,7 +76,6 @@ namespace DesktopDokies
         //Size ranges from 0(Large) to 2(small)
         public Doki(Bitmap S, Bitmap H, Bitmap D, DokiSize size, Who dokiWho, bool isRain = false)
         {
-            //this.image.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
 
             InitializeComponent();
             happy = (Bitmap)H.Clone();
@@ -143,7 +141,6 @@ namespace DesktopDokies
                 Move.Interval = rand.Next(750, 2751);
                
                 
-                //setHappy();
                 Fall.Start();
             }
             else
@@ -175,19 +172,6 @@ namespace DesktopDokies
             Jump.Enabled = false;
             Move.Enabled = false;
             Rain.Enabled = false;
-
-
-            /*for (int i = 0; i < 100; i++)
-            {
-                System.Threading.Thread.Sleep(10);
-                //var t = Task.Delay(5);
-                this.Opacity -= .01;
-                this.Update();
-                //t.Wait();
-            }
-            this.Dispose();
-            this.Close();*/
-            //this.Dispose();
         }
 
         private bool mouseDown;
