@@ -79,6 +79,10 @@ namespace DesktopDokies
                 this.Show();
                 notifyIcon1.Visible = false;
             };
+            this.bKillAll.Click += (ss, ee) =>
+            {
+                removeAll();
+            };
             
             addDoki(Who.wSayori, (int)DokiSize.Medium, "Medium Sayori");
             addDoki(Who.wNatsuki, (int)DokiSize.Medium, "Medium Natsuki");
@@ -96,7 +100,7 @@ namespace DesktopDokies
             this.fpAlive.Controls.Clear();
             foreach(Doki doki in Dokies)
             {
-                doki.Dispose();
+                BeginInvoke(new MethodInvoker(delegate { doki.DokiClose(); }));
             }
             Dokies.Clear();
         }
@@ -117,6 +121,7 @@ namespace DesktopDokies
             //doki = GetDoki();
             //doki.StartPosition = FormStartPosition.Manual;
             doki.Location = new Point(Rand.Next(0, doki.rWall), Rand.Next(0, doki.floor / 2));
+            Dokies.Add(doki);
             doki.Show();
             FlowLayoutPanel p = new FlowLayoutPanel();
             p.Name = "test";
