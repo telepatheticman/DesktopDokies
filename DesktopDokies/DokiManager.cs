@@ -15,22 +15,18 @@ namespace DesktopDokies
 
     public partial class DokiManager : Form
     {
-        //Dictionary<Doki, > dokies;
-        //List<Doki> testList;
         List<Bitmap> Monika_Res;
         List<Bitmap> Yuri_Res;
         List<Bitmap> Natsuki_Res;
         List<Bitmap> Sayori_Res;
         List<Doki> Dokies;
         Random Rand;
-        Screen myScreen;
-        Rectangle area;
 
         System.Windows.Forms.Timer rain = new System.Windows.Forms.Timer();
         bool isRaining = false;
         bool justMonika = false;
-        int lowerRainInterval = 500;
-        int higherRainInterval = 700;
+        int lowerRainInterval;
+        int higherRainInterval;
 
         int rainDokiesSelected = 4;
         bool rainSayori = true;
@@ -48,8 +44,6 @@ namespace DesktopDokies
 
         public DokiManager()
         {
-            myScreen = Screen.FromControl(this);
-            area = myScreen.WorkingArea;
             Rand = new Random();
             bool CloseButton = false;
             bool Told = false;
@@ -68,29 +62,20 @@ namespace DesktopDokies
             initCheck(this.cMedium, this.cLarge, this.cSmall);
             initCheck(this.cLarge, this.cSmall, this.cMedium);
 
-
-            /*this.cSayori.Click += (ss, ee) =>
-            {
-                if(this.cSayori.Enabled)
-                {
-                    rainSayoriSelected *= -1;
-                    rainDokiesSelected += rainSayoriSelected;
-                }
-                if(rainDokiesSelected == 1)
-                {
-                    if (this.cNatsuki.Checked) { this.cNatsuki.Enabled = false; };
-                }
-            };*/
-
             this.bSpawn.Click += spawn_Click;
+
             this.bRain.Click += rain_Click;
             rain.Tick += new EventHandler(rain_Tick);
+            lowerRainInterval = (16 - rainFreq) * 70;
+            higherRainInterval = (16 - rainFreq) * 100;
             rain.Interval = Rand.Next(lowerRainInterval, higherRainInterval + 1);
+
+            About about = new About();
             this.bAbout.Click += (ss, ee) =>
             {
-                About about = new About();
                 about.ShowDialog();
             };
+
             this.FormClosing += (ss, ee) =>
             {
                 
@@ -163,15 +148,13 @@ namespace DesktopDokies
                 applyJustMonika();
             };
 
-            lowerRainInterval = (16 - rainFreq) * 70;
-            higherRainInterval = (16 - rainFreq) * 100;
-
             addDoki(Who.wSayori, (int)DokiSize.Medium, "Medium Sayori");
             addDoki(Who.wNatsuki, (int)DokiSize.Medium, "Medium Natsuki");
             addDoki(Who.wYuri, (int)DokiSize.Medium, "Medium Yuri");
             addDoki(Who.wMonika, (int)DokiSize.Medium, "Medium Monika");
         }
 
+        //Begins Just Monika
         private void applyJustMonika()
         {
             justMonika = true;
@@ -196,6 +179,7 @@ namespace DesktopDokies
             addDoki(Who.wMonika, (int)DokiSize.Medium, "Just Monika");
         }
 
+        //Restes settings to default and applys them
         private void resetSettings()
         {
             this.cSayori.Checked = true;
@@ -218,6 +202,7 @@ namespace DesktopDokies
             this.tAmount.Value = 1;
         }
 
+        //Apply settings based on the controlls in the settings panel
         private void applySettings()
         {
             int dokiTotal = 0;
@@ -246,6 +231,8 @@ namespace DesktopDokies
             higherRainInterval = (16 - rainFreq) * 100;
         }
 
+        //Initalize checkbox logic
+        //If all group checkboxes are unchecked, main is disabled
         private void initCheck(CheckBox main, params CheckBox[] group)
         {
             main.Click += (ss, ee) =>
@@ -281,6 +268,7 @@ namespace DesktopDokies
             };
         }
 
+        //Removes all dokies
         private void removeAll()
         {
             //Likly unsafe. Not necisarily garentied to be a FlowLayoutPanel. But it is for now. 
@@ -296,9 +284,9 @@ namespace DesktopDokies
             Dokies.Clear();
         }
 
+        //Adds the kill button and name to the alive list
         private void addDokiControlls(Doki doki, string tText = "")
         {
-            //Doki doki;//= new Doki();
             Label t = new Label();
             if(string.IsNullOrEmpty(tText))
             { 
@@ -308,9 +296,7 @@ namespace DesktopDokies
             {
                 t.Text = tText;
             }
-            //getSize();
-            //doki = GetDoki();
-            //doki.StartPosition = FormStartPosition.Manual;
+
             doki.Location = new Point(Rand.Next(0, doki.rWall), Rand.Next(0, doki.floor / 2));
             Dokies.Add(doki);
             doki.Show();
@@ -338,13 +324,11 @@ namespace DesktopDokies
             };
 
             b.Click += doki.DokiCloseHandle;
-            //Doesnt work twice
-            //this.bKillAll.Click += doki.DokiCloseHandle;
-            //this.bKillAll.Click += (ss, ee) => { p.Dispose(); };
 
             this.fpAlive.Controls.Add(p);
         }
 
+        //Adds a doki based on current radio button settings
         private void addDoki()
         {
             getSize();
@@ -352,6 +336,7 @@ namespace DesktopDokies
             addDokiControlls(doki);
         }
 
+        //Adds a doki based on manual settings
         private void addDoki(Who who, int size, string tText)
         {
             Doki doki = null;
@@ -373,6 +358,7 @@ namespace DesktopDokies
             addDokiControlls(doki, tText);
         }
 
+        //Event handler for the start rain button
         private void rain_Click(object sender, EventArgs e)
         {
             if(!isRaining)
@@ -389,6 +375,7 @@ namespace DesktopDokies
             }
         }
 
+        //Event handler for every time the rain timer ticks
         private void rain_Tick(object sender, EventArgs e)
         {
             for (int i = 0; i < rainAmount; i++)
@@ -432,12 +419,14 @@ namespace DesktopDokies
             rain.Interval = Rand.Next(lowerRainInterval, higherRainInterval + 1);
         }
 
+        //Event handler for the spaawn button
         private void spawn_Click(object sender, EventArgs e)
         {
             if(!justMonika) addDoki();
             if(justMonika) addDoki(Who.wMonika, getSize(), "Just Monika");
         }
 
+        //Loads all the images from the resource file for use in the dokies
         private void loadRes()
         {
             Monika_Res = new List<Bitmap>();
@@ -485,6 +474,7 @@ namespace DesktopDokies
             Yuri_Res.Add(Properties.Resources.YuriDeadSmall);
         }
 
+        //Returns a doki based on radio buttom settings
         private Doki GetDoki()
         {
             if (this.rSayori.Checked)
@@ -505,23 +495,31 @@ namespace DesktopDokies
             }
         }
 
+        //Gets a Sayori doki
         private Doki GetSayori(int size, bool isRain = false)
         {
             return new Doki(Sayori_Res[0 + size * 3], Sayori_Res[1 + size * 3], Sayori_Res[2 + size * 3], (DokiSize)size, Who.wSayori, isRain);
         }
+
+        //Gets a Natsuki doki
         private Doki GetNatsuki(int size, bool isRain = false)
         {
             return new Doki(Natsuki_Res[0 + size * 3], Natsuki_Res[1 + size * 3], Natsuki_Res[2 + size * 3], (DokiSize)size, Who.wNatsuki, isRain);
         }
+
+        //Gets a Yuri doki
         private Doki GetYuri(int size, bool isRain = false)
         {
             return new Doki(Yuri_Res[0 + size * 3], Yuri_Res[1 + size * 3], Yuri_Res[2 + size * 3], (DokiSize)size, Who.wYuri, isRain);
         }
+
+        //Gets a Monika doki
         private Doki GetMonika(int size, bool isRain = false)
         {
             return new Doki(Monika_Res[0 + size * 3], Monika_Res[1 + size * 3], Monika_Res[2 + size * 3], (DokiSize)size, Who.wMonika, isRain);
         }
 
+        //Returns a size int based on radio button settings
         private int getSize()
         {
             if (this.rLarge.Checked)
@@ -538,6 +536,7 @@ namespace DesktopDokies
             }
         }
 
+        //Sets the name text based on radio button settings
         private String getText()
         {
             String text = "";
